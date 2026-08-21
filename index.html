@@ -4,207 +4,349 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aashrides | Delhi/NCR to Anywhere in India</title>
-  <meta name="description" content="Aashrides taxi booking service from Delhi/NCR to destinations across India.">
+  <meta name="description" content="Aashrides taxi booking service from Delhi/NCR to destinations across India. Fast fare estimate & instant booking.">
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f7f9fc;line-height:1.5}
+    body{font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:#172033;background:#f7f9fc;line-height:1.5}
     a{text-decoration:none;color:inherit}
-    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:10}
-    .navin{max-width:1100px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:9px;font-size:25px;font-weight:800;letter-spacing:-.5px}
-    .logo img{height:46px;width:46px;object-fit:contain;border-radius:8px}
+    
+    /* Navigation */
+    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:100}
+    .navin{max-width:1100px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;letter-spacing:-.5px;color:#172033}
+    .logo img{height:44px;width:44px;object-fit:cover;border-radius:8px;background:#172033}
     .navlinks{display:flex;gap:25px;font-size:14px;font-weight:600}
-    .btn{display:inline-block;border:0;border-radius:10px;padding:13px 19px;font-weight:700;cursor:pointer}
-    .primary{background:#f4b400;color:#161616}.dark{background:#172033;color:#fff}
+    .navlinks a:hover{color:#f4b400}
+    
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;padding:12px 20px;font-weight:700;cursor:pointer;text-align:center;transition:all 0.2s ease}
+    .primary{background:#f4b400;color:#161616}.primary:hover{background:#e0a500}
+    .dark{background:#172033;color:#fff}.dark:hover{background:#22304d}
+    .action-btn{background:#172033;color:#fff;width:100%;margin-top:14px;font-size:16px;padding:14px;border-radius:10px}
+    .action-btn:hover{background:#22304d}
+    .whatsapp-btn{background:#25d366;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;border:none;cursor:pointer;font-weight:bold}
+    .whatsapp-btn:hover{background:#20ba5a}
+    
+    /* Hero Section */
     .hero{background:linear-gradient(120deg,#172033 0%,#263653 100%);color:#fff}
-    .heroin{max-width:1100px;margin:auto;padding:72px 22px 82px;display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:center}
-    .eyebrow{color:#ffd25a;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1.2px;margin-bottom:13px}
-    h1{font-size:52px;line-height:1.05;margin-bottom:18px;letter-spacing:-1.5px}
-    .hero p{color:#dce3ef;max-width:560px;font-size:17px;margin-bottom:27px}
+    .heroin{max-width:1100px;margin:auto;padding:60px 22px 75px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+    .eyebrow{color:#ffd25a;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1.2px;margin-bottom:12px}
+    h1{font-size:48px;line-height:1.1;margin-bottom:18px;letter-spacing:-1.2px}
+    .hero p{color:#dce3ef;max-width:540px;font-size:16px;margin-bottom:26px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .booking{background:#fff;color:#172033;border-radius:18px;padding:25px;box-shadow:0 18px 50px #0005}
-    .booking h2{font-size:22px;margin-bottom:4px}.booking .sub{font-size:13px;color:#667085;margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-    label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:#475467}
-    input,select{width:100%;padding:12px;border:1px solid #d9dee8;border-radius:9px;font-size:14px;outline:none;background:#fff}
+    
+    /* Booking Card */
+    .booking{background:#fff;color:#172033;border-radius:18px;padding:25px;box-shadow:0 18px 50px rgba(0,0,0,0.3)}
+    .booking h2{font-size:22px;margin-bottom:4px}
+    .booking .sub{font-size:13px;color:#667085;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:#475467}
+    input,select{width:100%;padding:11px 12px;border:1px solid #d9dee8;border-radius:8px;font-size:14px;outline:none;background:#fff;transition:border 0.2s}
     input:focus,select:focus{border-color:#f4b400}
-    .full{grid-column:1/-1}.booking button{width:100%;margin-top:15px}
-    .notice{font-size:11px;color:#667085;margin-top:9px;text-align:center}
-    section{max-width:1100px;margin:auto;padding:70px 22px}
-    .sectionhead{text-align:center;margin-bottom:34px}.sectionhead h2{font-size:32px}.sectionhead p{color:#667085;margin-top:8px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:#fff;border:1px solid #e9edf3;border-radius:14px;padding:25px}
-    .icon{font-size:28px;margin-bottom:12px}.card h3{margin-bottom:7px}.card p{font-size:14px;color:#667085}
-    .strip{background:#fff;border-top:1px solid #e8ebf0;border-bottom:1px solid #e8ebf0}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{text-align:center}.num{margin:0 auto 12px;width:38px;height:38px;border-radius:50%;background:#f4b400;display:grid;place-items:center;font-weight:800}
-    .cta{background:#172033;color:#fff;border-radius:18px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.cta p{color:#cbd4e2;margin-top:5px}
-    footer{background:#111827;color:#b8c1cf}.foot{max-width:1100px;margin:auto;padding:28px 22px;display:flex;justify-content:space-between;gap:20px;font-size:13px}
-    .result{display:none;margin-top:12px;padding:14px;border-radius:9px;background:#fff8df;color:#6d5100;font-size:13px}
+    .full{grid-column:1/-1}
+    
+    /* Map Box */
     .mapbox{margin-top:14px;border:1px solid #d9dee8;border-radius:12px;overflow:hidden;background:#eef2f7}
-    #map{height:280px;width:100%}
-    .maptools{display:flex;gap:8px;padding:10px;background:#fff}
-    .maptools button{border:1px solid #d9dee8;background:#fff;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer}
-    .farebox{display:none;margin-top:14px;border:2px dashed #28a745;border-radius:12px;background:#f8fdf9;padding:16px}
-    .farebox h3{font-size:18px;margin-bottom:10px;color:#1e7e34}
-    .fareline{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:5px 0}
-    .faretotal{border-top:1px solid #28a745;margin-top:8px;padding-top:10px;font-size:22px;font-weight:800;color:#28a745;display:flex;justify-content:space-between}
+    #map{height:220px;width:100%}
+    .maptools{display:flex;gap:8px;padding:8px 10px;background:#fff;border-bottom:1px solid #e9edf3}
+    .maptools button{border:1px solid #d9dee8;background:#fff;border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer}
+    .maptools button:hover{background:#f4b400;border-color:#f4b400}
+    .google-note{font-size:11px;color:#667085;padding:8px 11px;background:#fff}
+    
+    /* Fare Box & Results */
+    .result{display:none;margin-top:12px;padding:12px;border-radius:8px;background:#fff8df;color:#6d5100;font-size:13px;border:1px solid #ffe89a}
     .error{color:#b42318;background:#fff1f0;border-color:#fecdca}
-    .google-note{font-size:11px;color:#667085;padding:9px 11px;background:#fff}
-    @media(max-width:800px){.heroin{grid-template-columns:1fr;padding-top:50px}h1{font-size:40px}.cards,.steps{grid-template-columns:1fr}.navlinks{display:none}.cta{display:block}.cta .btn{margin-top:18px}.foot{display:block}.foot div+div{margin-top:8px}}
-    @media(max-width:480px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.booking{padding:19px}section{padding:52px 18px}.heroin{padding-left:18px;padding-right:18px}.maptools{flex-wrap:wrap}}
+    .farebox{display:none;margin-top:14px;border:2px dashed #f4b400;border-radius:12px;background:#fffdf5;padding:16px}
+    .farebox h3{font-size:17px;margin-bottom:8px;color:#172033;display:flex;justify-content:space-between;align-items:center}
+    .booking-id-tag{font-size:12px;background:#fff3cc;color:#8a6d00;padding:3px 8px;border-radius:6px;border:1px solid #ffe89a}
+    .fareline{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:4px 0;color:#344054}
+    .faretotal{border-top:1px solid #ffe89a;margin-top:8px;padding-top:8px;font-size:20px;font-weight:800;color:#172033;display:flex;justify-content:space-between}
+    .booking-success{display:none;margin-top:14px;padding:14px;border-radius:10px;background:#e2f7e7;color:#1e7e34;border:1px solid #c3e6cb;text-align:center;font-size:14px}
+    .notice{font-size:11px;color:#667085;margin-top:10px;text-align:center;line-height:1.4}
+
+    /* Admin Panel Section */
+    .admin-section{background:#eef2f7;border:2px solid #d9dee8;border-radius:18px;padding:25px;margin-top:40px}
+    .admin-title{font-size:20px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+    .booking-table{width:100%;border-collapse:collapse;margin-top:15px;background:#fff;border-radius:8px;overflow:hidden;font-size:13px}
+    .booking-table th, .booking-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #e8ebf0}
+    .booking-table th{background:#172033;color:#fff}
+    .status-badge{padding:3px 8px;border-radius:4px;font-weight:bold;font-size:11px}
+    .status-pending{background:#fff3cd;color:#856404}
+    .status-completed{background:#d4edda;color:#155724}
+
+    /* General Sections */
+    section{max-width:1100px;margin:auto;padding:65px 22px}
+    .sectionhead{text-align:center;margin-bottom:34px}
+    .sectionhead h2{font-size:32px}
+    .sectionhead p{color:#667085;margin-top:6px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid #e9edf3;border-radius:14px;padding:24px;box-shadow:0 2px 5px rgba(0,0,0,0.02)}
+    .icon{font-size:30px;margin-bottom:12px}
+    .card h3{margin-bottom:8px;font-size:18px}.card p{font-size:14px;color:#667085}
+    .strip{background:#fff;border-top:1px solid #e8ebf0;border-bottom:1px solid #e8ebf0}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .step{text-align:center}
+    .num{margin:0 auto 12px;width:40px;height:40px;border-radius:50%;background:#f4b400;display:grid;place-items:center;font-weight:800;font-size:16px}
+    
+    /* CTA & Footer */
+    .cta{background:#172033;color:#fff;border-radius:18px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .cta p{color:#cbd4e2;margin-top:4px}
+    footer{background:#111827;color:#b8c1cf}
+    .foot{max-width:1100px;margin:auto;padding:26px 22px;display:flex;justify-content:space-between;gap:20px;font-size:13px}
+    
+    /* Responsive Media Queries */
+    @media(max-width:850px){
+      .heroin{grid-template-columns:1fr;padding-top:40px}
+      h1{font-size:38px}
+      .cards,.steps{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .cta{display:block}
+      .cta .btn{margin-top:16px}
+      .foot{flex-direction:column;gap:12px}
+      .booking-table{display:block;overflow-x:auto}
+    }
+    @media(max-width:480px){
+      .grid{grid-template-columns:1fr}
+      .booking{padding:18px}
+      section{padding:45px 16px}
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
   <nav class="nav">
     <div class="navin">
-      <a class="logo" href="#" aria-label="Aashrides">
-        <img src="./aashrides-logo.jpg" alt="Aashrides logo">
-        <span style="color:#172033">Aash<span style="color:#f4b400">rides</span></span>
+      <a class="logo" href="#" aria-label="Aashrides Home">
+        <img src="./aashrides-logo.jpg" alt="Aashrides logo" onerror="this.src='https://via.placeholder.com/46?text=AR'">
+        <span>Aash<span style="color:#f4b400">rides</span></span>
       </a>
-      <div class="navlinks"><a href="#book">Book</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div>
+      <div class="navlinks">
+        <a href="#book">Book Taxi</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Choose Us</a>
+        <a href="#admin">Driver Dashboard</a>
+      </div>
       <a class="btn primary" href="#book">Book Now</a>
     </div>
   </nav>
 
+  <!-- Hero & Booking Form Section -->
   <header class="hero">
     <div class="heroin">
       <div>
-        <div class="eyebrow">Delhi/NCR • All India</div>
+        <div class="eyebrow">Delhi/NCR • All India Taxi</div>
         <h1>Your ride.<br>Our responsibility.</h1>
-        <p>Reliable outstation taxi service from Delhi/NCR to destinations across India. Simple booking, comfortable rides and professional service.</p>
+        <p>Reliable outstation taxi service from Delhi/NCR to destinations across India. Clear pricing, comfortable rides, and professional drivers.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#book">Book a Taxi</a>
-          <a class="btn" style="background:#ffffff18;color:#fff;border:1px solid #ffffff35" href="#services">Explore Services</a>
+          <a class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)" href="#services">Explore Services</a>
         </div>
       </div>
 
+      <!-- Interactive Booking Widget -->
       <div class="booking" id="book">
         <h2>Book Your Ride</h2>
-        <div class="sub">Pickup must be within Delhi/NCR. Destination can be anywhere in India.</div>
-        <form id="bookingForm">
+        <div class="sub">Pickup: Delhi/NCR | Destination: Anywhere in India</div>
+        
+        <form id="bookingForm" onsubmit="return false;">
           <div class="grid">
             <div class="full">
-              <label>Pickup Location (Delhi/NCR)</label>
-              <input id="pickup" placeholder="Search pickup location" autocomplete="off" required>
-              <input id="pickupLat" type="hidden"><input id="pickupLng" type="hidden">
+              <label for="custName">Customer Full Name</label>
+              <input id="custName" placeholder="Enter your name" required>
             </div>
 
             <div class="full">
-              <label>Drop Location</label>
-              <input id="drop" placeholder="Search destination anywhere in India" autocomplete="off" required>
-              <input id="dropLat" type="hidden"><input id="dropLng" type="hidden">
+              <label for="custPhone">Mobile Number (WhatsApp Enabled)</label>
+              <input id="custPhone" type="tel" placeholder="Enter 10-digit mobile number" required>
+            </div>
+
+            <div class="full">
+              <label for="pickup">Pickup Location (Delhi/NCR)</label>
+              <input id="pickup" placeholder="Enter Delhi/NCR pickup address" autocomplete="off" required>
+              <input id="pickupLat" type="hidden">
+              <input id="pickupLng" type="hidden">
+            </div>
+
+            <div class="full">
+              <label for="drop">Drop Location</label>
+              <input id="drop" placeholder="Enter destination anywhere in India" autocomplete="off" required>
+              <input id="dropLat" type="hidden">
+              <input id="dropLng" type="hidden">
             </div>
 
             <div>
-              <label>Pickup Date</label>
+              <label for="date">Pickup Date</label>
               <input id="date" type="date" required>
             </div>
             <div>
-              <label>Pickup Time</label>
+              <label for="time">Pickup Time</label>
               <input id="time" type="time" required>
             </div>
             <div>
-              <label>Trip Type</label>
-              <select id="trip"><option value="oneway">One Way</option><option value="round">Round Trip</option></select>
+              <label for="trip">Trip Type</label>
+              <select id="trip">
+                <option value="oneway">One Way</option>
+                <option value="round">Round Trip</option>
+              </select>
             </div>
             <div>
-              <label>Taxi</label>
+              <label for="vehicle">Taxi Choice</label>
               <select id="vehicle">
                 <option value="5">5 Seater Taxi (₹15/km)</option>
                 <option value="7">7 Seater Taxi (₹18/km)</option>
               </select>
             </div>
-            <div class="full">
-              <label>Passengers</label>
-              <select id="passengers"><option>1-3</option><option>4-5</option><option>6-7</option></select>
-            </div>
           </div>
 
+          <!-- Interactive Map Container -->
           <div class="mapbox">
             <div class="maptools">
-              <button type="button" id="locateBtn">📍 Use my location</button>
-              <button type="button" id="centerBtn">Delhi/NCR</button>
+              <button type="button" id="locateBtn">📍 Use My Location</button>
+              <button type="button" id="centerBtn">Center Delhi/NCR</button>
             </div>
             <div id="map"></div>
-            <div class="google-note">📍 Search/select pickup on Google Maps. Pickup is limited to Delhi/NCR.</div>
+            <div class="google-note">📍 Select or drag pickup pin on map. Pickup is limited strictly to Delhi/NCR.</div>
           </div>
 
+          <!-- Alert / Information Box -->
           <div class="result" id="result"></div>
 
-          <!-- Total Payment Column Box -->
+          <!-- Calculated Fare Estimate Box -->
           <div class="farebox" id="fareBox">
-            <h3>💰 Fare Estimate</h3>
+            <h3>
+              <span>💰 Fare Estimate</span>
+              <span class="booking-id-tag">ID: <strong id="bookingIdText">AR-0000</strong></span>
+            </h3>
             <div class="fareline"><span>Vehicle Type</span><strong id="fareVehicle">5 Seater Taxi</strong></div>
             <div class="fareline"><span>Total Distance</span><strong id="fareDistance">0 km</strong></div>
-            <div class="fareline"><span>Trip Type</span><strong id="fareTrip">One Way</strong></div>
+            <div class="fareline"><span>Trip Mode</span><strong id="fareTrip">One Way</strong></div>
             <div class="fareline"><span>Rate Breakdown</span><strong id="fareKm">0 km × ₹15</strong></div>
             <div class="faretotal"><span>Total Payment:</span><span id="fareTotal">₹0</span></div>
+            
+            <button type="button" id="confirmBookingBtn" class="btn action-btn">🚖 Confirm & Register Booking</button>
           </div>
 
-          <div class="notice">* Note: Toll tax, state permit tax & parking extra rahenge. Final fare may vary depending on waiting time or route changes.</div>
+          <!-- Success Box (Shows After Customer Registers Booking) -->
+          <div class="booking-success" id="bookingSuccess">
+            <strong>✅ Booking Confirmed!</strong><br>
+            Aapka Booking ID hai: <b id="successBookingId">AR-2026-0000</b>.<br>
+            Ride complete hone par aapko WhatsApp par final receipt message mil jayega.
+          </div>
+
+          <div class="notice">* Note: Toll tax, state permit taxes & parking extra rahenge. Final fare route/waiting ke hisab se badal sakti hai.</div>
         </form>
       </div>
     </div>
   </header>
 
-  <section style="padding:34px 22px 0;text-align:center">
-    <img src="./aashrides-logo.jpg" alt="Aashrides taxi and travel agency logo" style="width:min(520px,90%);height:auto;display:inline-block">
-  </section>
-
-  <section id="services">
-    <div class="sectionhead"><h2>Our Services</h2><p>Comfortable travel for business, family and personal journeys.</p></div>
-    <div class="cards">
-      <div class="card"><div class="icon">🚕</div><h3>One-Way Taxi</h3><p>Travel from Delhi/NCR to your destination without the hassle of return-trip planning.</p></div>
-      <div class="card"><div class="icon">🔄</div><h3>Round Trip</h3><p>Flexible return journeys for vacations, family visits, business trips and more.</p></div>
-      <div class="card"><div class="icon">🛣️</div><h3>Outstation Travel</h3><p>Long-distance taxi service connecting Delhi/NCR with cities across India.</p></div>
+  <!-- Driver / Admin Panel Section -->
+  <section id="admin">
+    <div class="admin-section">
+      <div class="admin-title">
+        <span>🚖 Driver / Admin Booking Management</span>
+        <span style="font-size:12px;font-weight:normal;color:#667085">Mark Ride Complete to send WhatsApp Receipt</span>
+      </div>
+      
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Customer Name</th>
+            <th>Phone</th>
+            <th>Pickup → Drop</th>
+            <th>Estimated Fare</th>
+            <th>Status</th>
+            <th>Action (Ride Complete)</th>
+          </tr>
+        </thead>
+        <tbody id="adminBookingList">
+          <tr>
+            <td colspan="7" style="text-align:center;color:#667085">Abhi tak koi booking register nahi hui hai.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <div class="strip">
-    <section id="why">
-      <div class="sectionhead"><h2>Why Choose Aashrides?</h2><p>A simple, dependable taxi experience.</p></div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><h3>Easy Booking</h3><p>Enter your pickup, destination and travel details.</p></div>
-        <div class="step"><div class="num">2</div><h3>Clear Pricing</h3><p>Get a distance-based fare estimate before confirming your ride.</p></div>
-        <div class="step"><div class="num">3</div><h3>Travel Comfortably</h3><p>Enjoy a smooth outstation journey with Aashrides.</p></div>
+  <!-- Services Section -->
+  <section id="services">
+    <div class="sectionhead">
+      <h2>Our Outstation Services</h2>
+      <p>Comfortable travel options for corporate trips, family vacations, and emergency travel.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🚕</div>
+        <h3>One-Way Taxi</h3>
+        <p>Drop-only outstation service from Delhi/NCR to any city in India without return fare stress.</p>
       </div>
-    </section>
-  </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h3>Round Trip</h3>
+        <p>Flexible round-trip outstation cabs with dedicated drivers for multi-day vacations or meetings.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛣️</div>
+        <h3>All-India Travel</h3>
+        <p>Reliable long-distance network connecting Delhi, Noida, Gurgaon, Ghaziabad to anywhere in India.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Contact CTA Section -->
   <section id="contact">
     <div class="cta">
-      <div><h2>Ready to plan your journey?</h2><p>Book your Delhi/NCR pickup with Aashrides.</p><p style="margin-top:10px;color:#e5e7eb;font-size:14px">Customer Care: +91 93112 79707<br>Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></p></div>
-      <div><div style="font-size:13px;color:#cbd4e2;margin-bottom:7px">Customer Care</div>
-        <a class="btn primary" href="tel:+919311279707">📞 +91 93112 79707</a>
-        <div style="margin-top:10px;font-size:14px"><a href="mailto:aashrides@gmail.com" style="color:#fff">✉️ aashrides@gmail.com</a></div>
+      <div>
+        <h2 style="font-size:28px">Ready to plan your journey?</h2>
+        <p>Book your Delhi/NCR pickup with Aashrides now.</p>
+        <p style="margin-top:12px;color:#e5e7eb;font-size:14px">
+          Customer Support: +91 93112 79707<br>
+          Email: <a href="mailto:aashrides@gmail.com" style="color:#ffd25a;font-weight:700">aashrides@gmail.com</a>
+        </p>
+      </div>
+      <div>
+        <a class="btn primary" href="tel:+919311279707">📞 Call +91 93112 79707</a>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <div class="foot"><div><strong style="color:#fff">Aashrides</strong> — Delhi/NCR to anywhere in India.<br>Customer Care: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a><br>
-    Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></div><div>© 2026 Aashrides. All rights reserved.</div></div>
+    <div class="foot">
+      <div>
+        <strong style="color:#fff">Aashrides</strong> — Delhi/NCR to anywhere in India.<br>
+        Helpdesk: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a>
+      </div>
+      <div>© 2026 Aashrides. All rights reserved.</div>
+    </div>
   </footer>
 
+  <!-- Logic JavaScript -->
   <script>
-    /*
-      AASHRIDES FARE RATES
-      5 Seater = ₹15/km
-      7 Seater = ₹18/km
-    */
-    const FARE = {
-      5: { name: "5 Seater Taxi", perKm: 15 },
-      7: { name: "7 Seater Taxi", perKm: 18 }
+    const FARE_RATES = {
+      5: { name: "5 Seater Sedan/Hatchback", perKm: 15 },
+      7: { name: "7 Seater SUV/MUV", perKm: 18 }
     };
 
-    const DELHI_NCR = {lat: 28.6139, lng: 77.2090};
+    const DELHI_NCR_CENTER = {lat: 28.6139, lng: 77.2090};
     let map, pickupMarker, directionsService, directionsRenderer;
     let pickupPlace = null, dropPlace = null;
+    let currentCalculatedFare = 0;
+    let currentBookingId = null;
 
-    function showResult(message, error=false){
+    let bookingsDatabase = [];
+
+    function generateBookingId() {
+      const year = new Date().getFullYear();
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      return `AR-${year}-${randomNum}`;
+    }
+
+    function showResult(message, isError = false){
       const el = document.getElementById("result");
       el.style.display = "block";
-      el.className = "result" + (error ? " error" : "");
+      el.className = "result" + (isError ? " error" : "");
       el.textContent = message;
     }
 
@@ -213,9 +355,13 @@
       el.style.display = "none";
     }
 
+    function isDelhiNCR(lat, lng){
+      return lat >= 27.90 && lat <= 29.25 && lng >= 76.75 && lng <= 78.05;
+    }
+
     function initMap(){
       map = new google.maps.Map(document.getElementById("map"), {
-        center: DELHI_NCR,
+        center: DELHI_NCR_CENTER,
         zoom: 10,
         mapTypeControl: false,
         streetViewControl: false,
@@ -223,10 +369,10 @@
       });
 
       pickupMarker = new google.maps.Marker({
-        position: DELHI_NCR,
+        position: DELHI_NCR_CENTER,
         map: map,
         draggable: true,
-        title: "Pickup location"
+        title: "Drag to set pickup location"
       });
 
       directionsService = new google.maps.DirectionsService();
@@ -242,25 +388,28 @@
         componentRestrictions: {country: "in"},
         fields: ["geometry","formatted_address","name"]
       });
+
       pickupAutocomplete.addListener("place_changed", () => {
         const place = pickupAutocomplete.getPlace();
         if (!place.geometry || !place.geometry.location) {
-          showResult("Please select a pickup location from the Google suggestions.", true);
+          showResult("Please select a pickup address from the Google dropdown options.", true);
           return;
         }
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
-        if (!isDelhiNCR(lat,lng)) {
-          showResult("Pickup is available only within Delhi/NCR.", true);
+
+        if (!isDelhiNCR(lat, lng)) {
+          showResult("Pickup service is restricted strictly to Delhi/NCR region.", true);
           pickupInput.value = "";
           pickupPlace = null;
           return;
         }
+
         hideResult();
         pickupPlace = place;
-        setPickupMarker(lat,lng);
+        setPickupMarker(lat, lng);
         map.setZoom(14);
-        map.panTo({lat,lng});
+        map.panTo({lat, lng});
         calculateAutoFare();
       });
 
@@ -268,10 +417,11 @@
         componentRestrictions: {country: "in"},
         fields: ["geometry","formatted_address","name"]
       });
+
       dropAutocomplete.addListener("place_changed", () => {
         const place = dropAutocomplete.getPlace();
         if (!place.geometry || !place.geometry.location) {
-          showResult("Please select the destination from the Google suggestions.", true);
+          showResult("Please choose a destination location from the dropdown suggestions.", true);
           return;
         }
         hideResult();
@@ -282,15 +432,17 @@
       pickupMarker.addListener("dragend", () => {
         const p = pickupMarker.getPosition();
         const lat = p.lat(), lng = p.lng();
-        if (!isDelhiNCR(lat,lng)) {
-          showResult("Pickup is available only within Delhi/NCR.", true);
-          setPickupMarker(DELHI_NCR.lat, DELHI_NCR.lng);
+
+        if (!isDelhiNCR(lat, lng)) {
+          showResult("Marker dropped outside Delhi/NCR bounds. Resetting to center.", true);
+          setPickupMarker(DELHI_NCR_CENTER.lat, DELHI_NCR_CENTER.lng);
           return;
         }
+
         hideResult();
         pickupPlace = {
           geometry: {location: p},
-          formatted_address: lat.toFixed(6) + ", " + lng.toFixed(6)
+          formatted_address: lat.toFixed(5) + ", " + lng.toFixed(5)
         };
         document.getElementById("pickup").value = pickupPlace.formatted_address;
         calculateAutoFare();
@@ -300,48 +452,46 @@
       document.getElementById("trip").addEventListener("change", calculateAutoFare);
     }
 
-    function setPickupMarker(lat,lng){
-      const position = {lat:Number(lat), lng:Number(lng)};
+    function setPickupMarker(lat, lng){
+      const position = {lat: Number(lat), lng: Number(lng)};
       pickupMarker.setPosition(position);
       document.getElementById("pickupLat").value = position.lat;
       document.getElementById("pickupLng").value = position.lng;
     }
 
-    function isDelhiNCR(lat,lng){
-      return lat >= 27.90 && lat <= 29.25 && lng >= 76.75 && lng <= 78.05;
-    }
-
     document.getElementById("centerBtn").addEventListener("click", () => {
       if (!map) return;
-      map.setCenter(DELHI_NCR);
+      map.setCenter(DELHI_NCR_CENTER);
       map.setZoom(10);
     });
 
     document.getElementById("locateBtn").addEventListener("click", () => {
       if (!navigator.geolocation) {
-        showResult("Your browser does not support location access.", true);
+        showResult("GPS Geolocation is not supported in your browser.", true);
         return;
       }
       navigator.geolocation.getCurrentPosition(pos => {
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-        if (!isDelhiNCR(lat,lng)) {
-          showResult("Your current location is outside the Delhi/NCR pickup area.", true);
+
+        if (!isDelhiNCR(lat, lng)) {
+          showResult("Your current location is outside the Delhi/NCR pickup zone.", true);
           return;
         }
+
         hideResult();
-        setPickupMarker(lat,lng);
+        setPickupMarker(lat, lng);
         pickupPlace = {
-          geometry: {location: new google.maps.LatLng(lat,lng)},
-          formatted_address: lat.toFixed(6) + ", " + lng.toFixed(6)
+          geometry: {location: new google.maps.LatLng(lat, lng)},
+          formatted_address: lat.toFixed(5) + ", " + lng.toFixed(5)
         };
         document.getElementById("pickup").value = pickupPlace.formatted_address;
-        map.setCenter({lat,lng});
-        map.setZoom(15);
+        map.setCenter({lat, lng});
+        map.setZoom(14);
         calculateAutoFare();
       }, () => {
-        showResult("Location access was not allowed. You can search your pickup location instead.", true);
-      }, {enableHighAccuracy:true, timeout:10000});
+        showResult("Location access was denied. Please enter address manually.", true);
+      }, {enableHighAccuracy: true, timeout: 8000});
     });
 
     document.getElementById("date").min = new Date().toISOString().split("T")[0];
@@ -349,8 +499,8 @@
     function calculateAutoFare(){
       if(!pickupPlace || !pickupPlace.geometry || !dropPlace || !dropPlace.geometry) return;
 
-      const vehicle = document.getElementById("vehicle").value;
-      const trip = document.getElementById("trip").value;
+      const vehicleVal = document.getElementById("vehicle").value;
+      const tripVal = document.getElementById("trip").value;
 
       directionsService.route({
         origin: pickupPlace.geometry.location,
@@ -358,7 +508,7 @@
         travelMode: google.maps.TravelMode.DRIVING
       }, (response, status) => {
         if(status !== "OK" || !response.routes || !response.routes[0]){
-          showResult("Google Maps could not calculate this route. Please try another destination.", true);
+          showResult("Unable to calculate driving route to destination. Try another drop point.", true);
           return;
         }
 
@@ -369,25 +519,121 @@
         legs.forEach(leg => meters += leg.distance.value);
 
         const distanceKm = meters / 1000;
-        const rate = FARE[vehicle];
+        const rateInfo = FARE_RATES[vehicleVal];
         const billableKm = Math.ceil(distanceKm);
 
-        let total = billableKm * rate.perKm;
-        if(trip === "round") total = total * 2;
+        let totalFare = billableKm * rateInfo.perKm;
+        if(tripVal === "round") totalFare = totalFare * 2;
 
-        document.getElementById("fareVehicle").textContent = rate.name;
+        currentCalculatedFare = totalFare;
+        if(!currentBookingId) {
+          currentBookingId = generateBookingId();
+        }
+
+        document.getElementById("bookingIdText").textContent = currentBookingId;
+        document.getElementById("fareVehicle").textContent = rateInfo.name;
         document.getElementById("fareDistance").textContent = distanceKm.toFixed(1) + " km";
-        document.getElementById("fareTrip").textContent = trip === "round" ? "Round Trip" : "One Way";
-        document.getElementById("fareKm").textContent = billableKm + " km × ₹" + rate.perKm;
-        document.getElementById("fareTotal").textContent = "₹" + total.toLocaleString("en-IN");
+        document.getElementById("fareTrip").textContent = tripVal === "round" ? "Round Trip" : "One Way";
+        document.getElementById("fareKm").textContent = billableKm + " km × ₹" + rateInfo.perKm + (tripVal === "round" ? " (x2 Return)" : "");
+        document.getElementById("fareTotal").textContent = "₹" + totalFare.toLocaleString("en-IN");
         document.getElementById("fareBox").style.display = "block";
       });
+    }
+
+    /* Step 1: Customer registers booking */
+    document.getElementById("confirmBookingBtn").addEventListener("click", () => {
+      const name = document.getElementById("custName").value;
+      const phone = document.getElementById("custPhone").value;
+      const pickup = document.getElementById("pickup").value;
+      const drop = document.getElementById("drop").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      if(!name || !phone || !pickup || !drop || !date || !time){
+        alert("Kripya saari details (Naam, Phone, Pickup, Drop, Date, Time) sahi se bharein.");
+        return;
+      }
+
+      const newBooking = {
+        id: currentBookingId,
+        name: name,
+        phone: phone,
+        pickup: pickup,
+        drop: drop,
+        fare: currentCalculatedFare,
+        status: "Pending"
+      };
+
+      bookingsDatabase.push(newBooking);
+      
+      document.getElementById("successBookingId").textContent = currentBookingId;
+      document.getElementById("bookingSuccess").style.display = "block";
+      document.getElementById("fareBox").style.display = "none";
+
+      renderAdminTable();
+
+      // Reset for next ID
+      currentBookingId = null;
+    });
+
+    /* Render Admin Dashboard Table */
+    function renderAdminTable(){
+      const tbody = document.getElementById("adminBookingList");
+      if(bookingsDatabase.length === 0){
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#667085">Abhi tak koi booking register nahi hui hai.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = bookingsDatabase.map(b => `
+        <tr>
+          <td><b>${b.id}</b></td>
+          <td>${b.name}</td>
+          <td>${b.phone}</td>
+          <td>${b.pickup} → ${b.drop}</td>
+          <td>₹${b.fare.toLocaleString("en-IN")}</td>
+          <td>
+            <span class="status-badge ${b.status === 'Completed' ? 'status-completed' : 'status-pending'}">
+              ${b.status}
+            </span>
+          </td>
+          <td>
+            ${b.status === 'Pending' ? 
+              `<button class="whatsapp-btn" onclick="completeRide('${b.id}')">✅ Complete Ride & Send Receipt</button>` : 
+              `<span style="color:#20ba5a;font-weight:bold">Message Sent</span>`
+            }
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    /* Step 2: Driver/Admin completes ride & sends WhatsApp Receipt */
+    function completeRide(id){
+      const booking = bookingsDatabase.find(b => b.id === id);
+      if(!booking) return;
+
+      booking.status = "Completed";
+      renderAdminTable();
+
+      const receiptMessage = `Hello ${booking.name},%0A%0A` +
+        `🎉 *Aapki Ride Successful Complete Ho Gayi Hai!*%0A` +
+        `🆔 *Booking ID:* ${booking.id}%0A` +
+        `📍 *Pickup:* ${booking.pickup}%0A` +
+        `🚩 *Drop:* ${booking.drop}%0A` +
+        `💰 *Final Paid Amount:* ₹${booking.fare.toLocaleString("en-IN")}%0A%0A` +
+        `Thank you for riding with *Aashrides*! Have a great day ahead! 🚕✨`;
+
+      let cleanPhone = booking.phone.replace(/[^0-9]/g, '');
+      if(!cleanPhone.startsWith('91') && cleanPhone.length === 10){
+        cleanPhone = '91' + cleanPhone;
+      }
+
+      window.open(`https://wa.me/${cleanPhone}?text=${receiptMessage}`, '_blank');
     }
 
     window.initMap = initMap;
   </script>
 
-  <!-- Google Maps API Key Add Karein -->
+  <!-- Google Maps API Script -->
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap">
   </script>
