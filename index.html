@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aashrides | Delhi/NCR to Anywhere in India</title>
+  <meta name="description" content="Aashrides taxi booking service from Delhi/NCR to destinations across India.">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;color:#172033;background:#f7f9fc;line-height:1.5}
+    a{text-decoration:none;color:inherit}
+    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:10}
+    .navin{max-width:1100px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:9px;font-size:25px;font-weight:800;letter-spacing:-.5px}
+    .logo img{height:46px;width:46px;object-fit:contain;border-radius:8px}
+    .logo span{color:#f4b400}
+    .navlinks{display:flex;gap:25px;font-size:14px;font-weight:600}
+    .btn{display:inline-block;border:0;border-radius:10px;padding:13px 19px;font-weight:700;cursor:pointer}
+    .primary{background:#f4b400;color:#161616}.dark{background:#172033;color:#fff}
+    .hero{background:linear-gradient(120deg,#172033 0%,#263653 100%);color:#fff}
+    .heroin{max-width:1100px;margin:auto;padding:72px 22px 82px;display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:center}
+    .eyebrow{color:#ffd25a;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1.2px;margin-bottom:13px}
+    h1{font-size:52px;line-height:1.05;margin-bottom:18px;letter-spacing:-1.5px}
+    .hero p{color:#dce3ef;max-width:560px;font-size:17px;margin-bottom:27px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .booking{background:#fff;color:#172033;border-radius:18px;padding:25px;box-shadow:0 18px 50px #0005}
+    .booking h2{font-size:22px;margin-bottom:4px}.booking .sub{font-size:13px;color:#667085;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:#475467}
+    input,select{width:100%;padding:12px;border:1px solid #d9dee8;border-radius:9px;font-size:14px;outline:none;background:#fff}
+    input:focus,select:focus{border-color:#f4b400}
+    .full{grid-column:1/-1}.booking button{width:100%;margin-top:15px}
+    .notice{font-size:11px;color:#667085;margin-top:9px;text-align:center}
+    section{max-width:1100px;margin:auto;padding:70px 22px}
+    .sectionhead{text-align:center;margin-bottom:34px}.sectionhead h2{font-size:32px}.sectionhead p{color:#667085;margin-top:8px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid #e9edf3;border-radius:14px;padding:25px}
+    .icon{font-size:28px;margin-bottom:12px}.card h3{margin-bottom:7px}.card p{font-size:14px;color:#667085}
+    .strip{background:#fff;border-top:1px solid #e8ebf0;border-bottom:1px solid #e8ebf0}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{text-align:center}.num{margin:0 auto 12px;width:38px;height:38px;border-radius:50%;background:#f4b400;display:grid;place-items:center;font-weight:800}
+    .cta{background:#172033;color:#fff;border-radius:18px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.cta p{color:#cbd4e2;margin-top:5px}
+    footer{background:#111827;color:#b8c1cf}.foot{max-width:1100px;margin:auto;padding:28px 22px;display:flex;justify-content:space-between;gap:20px;font-size:13px}
+    .result{display:none;margin-top:12px;padding:12px;border-radius:9px;background:#fff8df;color:#6d5100;font-size:13px}
+    .mapbox{margin-top:14px;border:1px solid #d9dee8;border-radius:12px;overflow:hidden;background:#eef2f7}
+    #map{height:280px;width:100%}
+    .maptools{display:flex;gap:8px;padding:10px;background:#fff}
+    .maptools button{border:1px solid #d9dee8;background:#fff;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer}
+    .mapnote{padding:9px 11px;background:#fff;font-size:11px;color:#667085}
+    @media(max-width:800px){.heroin{grid-template-columns:1fr;padding-top:50px}h1{font-size:40px}.cards,.steps{grid-template-columns:1fr}.navlinks{display:none}.cta{display:block}.cta .btn{margin-top:18px}.foot{display:block}.foot div+div{margin-top:8px}}
+    @media(max-width:480px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.booking{padding:19px}section{padding:52px 18px}.heroin{padding-left:18px;padding-right:18px}}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<body>
+  <nav class="nav">
+    <div class="navin">
+      <a class="logo" href="#" aria-label="Aashrides"><img src="aashrides-logo.png" alt="Aashrides logo"><span style="color:#172033">Aash<span style="color:#f4b400">rides</span></span></a>
+      <div class="navlinks"><a href="#book">Book</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div>
+      <a class="btn primary" href="#book">Book Now</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="heroin">
+      <div>
+        <div class="eyebrow">Delhi/NCR • All India</div>
+        <h1>Your ride.<br>Our responsibility.</h1>
+        <p>Reliable outstation taxi service from Delhi/NCR to destinations across India. Simple booking, comfortable rides and professional service.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#book">Book a Taxi</a>
+          <a class="btn" style="background:#ffffff18;color:#fff;border:1px solid #ffffff35" href="#services">Explore Services</a>
+        </div>
+      </div>
+
+      <div class="booking" id="book">
+        <h2>Book Your Ride</h2>
+        <div class="sub">Pickup must be within Delhi/NCR. Destination can be anywhere in India.</div>
+        <form id="bookingForm">
+          <div class="grid">
+            <div class="full">
+              <label>Pickup Location (Delhi/NCR)</label>
+              <input id="pickup" placeholder="Search and select pickup location" autocomplete="off" required>
+              <input id="pickupLat" type="hidden"><input id="pickupLng" type="hidden">
+            </div>
+            <div>
+              <label>Drop Location</label>
+              <input id="drop" placeholder="e.g. Jaipur, Rajasthan" required>
+            </div>
+            <div>
+              <label>Pickup Date</label>
+              <input id="date" type="date" required>
+            </div>
+            <div>
+              <label>Pickup Time</label>
+              <input id="time" type="time" required>
+            </div>
+            <div>
+              <label>Trip Type</label>
+              <select id="trip"><option>One Way</option><option>Round Trip</option></select>
+            </div>
+            <div>
+              <label>Passengers</label>
+              <select id="passengers"><option>1-3</option><option>4-5</option><option>6-7</option></select>
+            </div>
+          </div>
+          <div class="mapbox">
+            <div class="maptools">
+              <button type="button" id="locateBtn">📍 Use my location</button>
+              <button type="button" id="centerBtn">Delhi/NCR</button>
+            </div>
+            <div id="map"></div>
+            <div class="mapnote">📍 Tap the map or move the pin to choose your exact pickup point. Pickup is limited to Delhi/NCR.</div>
+          </div>
+          <button class="btn dark" type="submit">Get Fare Estimate</button>
+          <div class="result" id="result"></div>
+          <div class="notice">Demo booking form — connect your backend/payment gateway for live bookings.</div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:34px 22px 0;text-align:center">
+    <img src="aashrides-logo.png" alt="Aashrides taxi and travel agency logo" style="width:min(520px,90%);height:auto;display:inline-block">
+  </section>
+
+  <section id="services">
+    <div class="sectionhead"><h2>Our Services</h2><p>Comfortable travel for business, family and personal journeys.</p></div>
+    <div class="cards">
+      <div class="card"><div class="icon">🚕</div><h3>One-Way Taxi</h3><p>Travel from Delhi/NCR to your destination without the hassle of return-trip planning.</p></div>
+      <div class="card"><div class="icon">🔄</div><h3>Round Trip</h3><p>Flexible return journeys for vacations, family visits, business trips and more.</p></div>
+      <div class="card"><div class="icon">🛣️</div><h3>Outstation Travel</h3><p>Long-distance taxi service connecting Delhi/NCR with cities across India.</p></div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <section id="why">
+      <div class="sectionhead"><h2>Why Choose Aashrides?</h2><p>A simple, dependable taxi experience.</p></div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Easy Booking</h3><p>Enter your pickup, destination and travel details.</p></div>
+        <div class="step"><div class="num">2</div><h3>Clear Pricing</h3><p>Get a fare estimate before confirming your ride.</p></div>
+        <div class="step"><div class="num">3</div><h3>Travel Comfortably</h3><p>Enjoy a smooth outstation journey with Aashrides.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <section id="contact">
+    <div class="cta">
+      <div><h2>Ready to plan your journey?</h2><p>Book your Delhi/NCR pickup with Aashrides.</p><p style="margin-top:10px;color:#e5e7eb;font-size:14px">Customer Care: +91 93112 79707<br>Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></p></div>
+      <div><div style="font-size:13px;color:#cbd4e2;margin-bottom:7px">Customer Care</div>
+          <a class="btn primary" href="tel:+919311279707">📞 +91 93112 79707</a>
+          <div style="margin-top:10px;font-size:14px"><a href="mailto:aashrides@gmail.com" style="color:#fff">✉️ aashrides@gmail.com</a></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot"><div><strong style="color:#fff">Aashrides</strong> — Delhi/NCR to anywhere in India.<br>Customer Care: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a><br>
+Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></div><div>© 2026 Aashrides. All rights reserved.</div></div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    const DELHI_NCR = {lat: 28.6139, lng: 77.2090};
+    const map = L.map('map', {zoomControl:true}).setView([DELHI_NCR.lat, DELHI_NCR.lng], 10);
+
+    // OpenStreetMap map tiles: no Google API key required.
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let marker = L.marker([DELHI_NCR.lat, DELHI_NCR.lng], {draggable:true}).addTo(map);
+
+    // Approximate Delhi/NCR service boundary for front-end validation.
+    const ncrBounds = L.latLngBounds([27.90, 76.75], [29.25, 78.05]);
+
+    function setPickup(lat, lng, addressText) {
+      const point = L.latLng(lat, lng);
+      if (!ncrBounds.contains(point)) {
+        alert("Aashrides pickup is currently available only within Delhi/NCR. Please select a location inside Delhi/NCR.");
+        return false;
+      }
+      marker.setLatLng(point);
+      document.getElementById("pickupLat").value = lat;
+      document.getElementById("pickupLng").value = lng;
+      if (addressText) document.getElementById("pickup").value = addressText;
+      return true;
+    }
+
+    async function reverseGeocode(lat, lng) {
+      try {
+        const res = await fetch(
+          "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+          encodeURIComponent(lat) + "&lon=" + encodeURIComponent(lng)
+        );
+        const data = await res.json();
+        const name = data.display_name || (lat.toFixed(6) + ", " + lng.toFixed(6));
+        document.getElementById("pickup").value = name;
+      } catch(e) {
+        document.getElementById("pickup").value = lat.toFixed(6) + ", " + lng.toFixed(6);
+      }
+    }
+
+    map.on('click', async function(e) {
+      if (setPickup(e.latlng.lat, e.latlng.lng)) {
+        await reverseGeocode(e.latlng.lat, e.latlng.lng);
+      }
+    });
+
+    marker.on('dragend', async function() {
+      const p = marker.getLatLng();
+      if (setPickup(p.lat, p.lng)) await reverseGeocode(p.lat, p.lng);
+    });
+
+    document.getElementById("centerBtn").addEventListener("click", function() {
+      map.setView([DELHI_NCR.lat, DELHI_NCR.lng], 10);
+    });
+
+    document.getElementById("locateBtn").addEventListener("click", function() {
+      if (!navigator.geolocation) {
+        alert("Your browser does not support location access.");
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        async function(pos) {
+          const lat = pos.coords.latitude, lng = pos.coords.longitude;
+          if (setPickup(lat, lng)) {
+            map.setView([lat, lng], 15);
+            await reverseGeocode(lat, lng);
+          }
+        },
+        function() {
+          alert("Location access was not allowed. You can select your pickup point directly on the map.");
+        },
+        {enableHighAccuracy:true, timeout:10000}
+      );
+    });
+
+    document.getElementById("date").min = new Date().toISOString().split("T")[0];
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const pickup = document.getElementById("pickup").value.trim();
+      const drop = document.getElementById("drop").value.trim();
+      const lat = document.getElementById("pickupLat").value;
+      const lng = document.getElementById("pickupLng").value;
+      const result = document.getElementById("result");
+
+      if(!pickup || !drop) return;
+
+      if (!lat || !lng) {
+        result.style.display = "block";
+        result.textContent = "Please select your pickup point on the map first.";
+        return;
+      }
+
+      result.style.display = "block";
+      result.textContent = "Pickup selected: " + pickup + ". Route " + pickup + " → " + drop + " is ready for fare calculation.";
+    });
+  </script>
+
+</body>
+</html>
