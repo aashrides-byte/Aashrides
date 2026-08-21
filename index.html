@@ -13,7 +13,6 @@
     .navin{max-width:1100px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
     .logo{display:flex;align-items:center;gap:9px;font-size:25px;font-weight:800;letter-spacing:-.5px}
     .logo img{height:46px;width:46px;object-fit:contain;border-radius:8px}
-    .logo span{color:#f4b400}
     .navlinks{display:flex;gap:25px;font-size:14px;font-weight:600}
     .btn{display:inline-block;border:0;border-radius:10px;padding:13px 19px;font-weight:700;cursor:pointer}
     .primary{background:#f4b400;color:#161616}.dark{background:#172033;color:#fff}
@@ -40,21 +39,28 @@
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{text-align:center}.num{margin:0 auto 12px;width:38px;height:38px;border-radius:50%;background:#f4b400;display:grid;place-items:center;font-weight:800}
     .cta{background:#172033;color:#fff;border-radius:18px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.cta p{color:#cbd4e2;margin-top:5px}
     footer{background:#111827;color:#b8c1cf}.foot{max-width:1100px;margin:auto;padding:28px 22px;display:flex;justify-content:space-between;gap:20px;font-size:13px}
-    .result{display:none;margin-top:12px;padding:12px;border-radius:9px;background:#fff8df;color:#6d5100;font-size:13px}
+    .result{display:none;margin-top:12px;padding:14px;border-radius:9px;background:#fff8df;color:#6d5100;font-size:13px}
     .mapbox{margin-top:14px;border:1px solid #d9dee8;border-radius:12px;overflow:hidden;background:#eef2f7}
     #map{height:280px;width:100%}
     .maptools{display:flex;gap:8px;padding:10px;background:#fff}
     .maptools button{border:1px solid #d9dee8;background:#fff;border-radius:8px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer}
-    .mapnote{padding:9px 11px;background:#fff;font-size:11px;color:#667085}
+    .farebox{display:none;margin-top:14px;border:2px dashed #28a745;border-radius:12px;background:#f8fdf9;padding:16px}
+    .farebox h3{font-size:18px;margin-bottom:10px;color:#1e7e34}
+    .fareline{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:5px 0}
+    .faretotal{border-top:1px solid #28a745;margin-top:8px;padding-top:10px;font-size:22px;font-weight:800;color:#28a745;display:flex;justify-content:space-between}
+    .error{color:#b42318;background:#fff1f0;border-color:#fecdca}
+    .google-note{font-size:11px;color:#667085;padding:9px 11px;background:#fff}
     @media(max-width:800px){.heroin{grid-template-columns:1fr;padding-top:50px}h1{font-size:40px}.cards,.steps{grid-template-columns:1fr}.navlinks{display:none}.cta{display:block}.cta .btn{margin-top:18px}.foot{display:block}.foot div+div{margin-top:8px}}
-    @media(max-width:480px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.booking{padding:19px}section{padding:52px 18px}.heroin{padding-left:18px;padding-right:18px}}
+    @media(max-width:480px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.booking{padding:19px}section{padding:52px 18px}.heroin{padding-left:18px;padding-right:18px}.maptools{flex-wrap:wrap}}
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
   <nav class="nav">
     <div class="navin">
-      <a class="logo" href="#" aria-label="Aashrides"><img src="./aashrides-logo.jpg" alt="Aashrides logo"><span style="color:#172033">Aash<span style="color:#f4b400">rides</span></span></a>
+      <a class="logo" href="#" aria-label="Aashrides">
+        <img src="./aashrides-logo.jpg" alt="Aashrides logo">
+        <span style="color:#172033">Aash<span style="color:#f4b400">rides</span></span>
+      </a>
       <div class="navlinks"><a href="#book">Book</a><a href="#services">Services</a><a href="#why">Why Us</a><a href="#contact">Contact</a></div>
       <a class="btn primary" href="#book">Book Now</a>
     </div>
@@ -79,13 +85,16 @@
           <div class="grid">
             <div class="full">
               <label>Pickup Location (Delhi/NCR)</label>
-              <input id="pickup" placeholder="Search and select pickup location" autocomplete="off" required>
+              <input id="pickup" placeholder="Search pickup location" autocomplete="off" required>
               <input id="pickupLat" type="hidden"><input id="pickupLng" type="hidden">
             </div>
-            <div>
+
+            <div class="full">
               <label>Drop Location</label>
-              <input id="drop" placeholder="e.g. Jaipur, Rajasthan" required>
+              <input id="drop" placeholder="Search destination anywhere in India" autocomplete="off" required>
+              <input id="dropLat" type="hidden"><input id="dropLng" type="hidden">
             </div>
+
             <div>
               <label>Pickup Date</label>
               <input id="date" type="date" required>
@@ -96,31 +105,50 @@
             </div>
             <div>
               <label>Trip Type</label>
-              <select id="trip"><option>One Way</option><option>Round Trip</option></select>
+              <select id="trip"><option value="oneway">One Way</option><option value="round">Round Trip</option></select>
             </div>
             <div>
+              <label>Taxi</label>
+              <select id="vehicle">
+                <option value="5">5 Seater Taxi (₹15/km)</option>
+                <option value="7">7 Seater Taxi (₹18/km)</option>
+              </select>
+            </div>
+            <div class="full">
               <label>Passengers</label>
               <select id="passengers"><option>1-3</option><option>4-5</option><option>6-7</option></select>
             </div>
           </div>
+
           <div class="mapbox">
             <div class="maptools">
               <button type="button" id="locateBtn">📍 Use my location</button>
               <button type="button" id="centerBtn">Delhi/NCR</button>
             </div>
             <div id="map"></div>
-            <div class="mapnote">📍 Tap the map or move the pin to choose your exact pickup point. Pickup is limited to Delhi/NCR.</div>
+            <div class="google-note">📍 Search/select pickup on Google Maps. Pickup is limited to Delhi/NCR.</div>
           </div>
-          <button class="btn dark" type="submit">Get Fare Estimate</button>
+
           <div class="result" id="result"></div>
-          <div class="notice">Demo booking form — connect your backend/payment gateway for live bookings.</div>
+
+          <!-- Total Payment Column Box -->
+          <div class="farebox" id="fareBox">
+            <h3>💰 Fare Estimate</h3>
+            <div class="fareline"><span>Vehicle Type</span><strong id="fareVehicle">5 Seater Taxi</strong></div>
+            <div class="fareline"><span>Total Distance</span><strong id="fareDistance">0 km</strong></div>
+            <div class="fareline"><span>Trip Type</span><strong id="fareTrip">One Way</strong></div>
+            <div class="fareline"><span>Rate Breakdown</span><strong id="fareKm">0 km × ₹15</strong></div>
+            <div class="faretotal"><span>Total Payment:</span><span id="fareTotal">₹0</span></div>
+          </div>
+
+          <div class="notice">* Note: Toll tax, state permit tax & parking extra rahenge. Final fare may vary depending on waiting time or route changes.</div>
         </form>
       </div>
     </div>
   </header>
 
   <section style="padding:34px 22px 0;text-align:center">
-    <img src="./aashrides-logo.jpg".jpg" alt="Aashrides taxi and travel agency logo" style="width:min(520px,90%);height:auto;display:inline-block">
+    <img src="./aashrides-logo.jpg" alt="Aashrides taxi and travel agency logo" style="width:min(520px,90%);height:auto;display:inline-block">
   </section>
 
   <section id="services">
@@ -137,7 +165,7 @@
       <div class="sectionhead"><h2>Why Choose Aashrides?</h2><p>A simple, dependable taxi experience.</p></div>
       <div class="steps">
         <div class="step"><div class="num">1</div><h3>Easy Booking</h3><p>Enter your pickup, destination and travel details.</p></div>
-        <div class="step"><div class="num">2</div><h3>Clear Pricing</h3><p>Get a fare estimate before confirming your ride.</p></div>
+        <div class="step"><div class="num">2</div><h3>Clear Pricing</h3><p>Get a distance-based fare estimate before confirming your ride.</p></div>
         <div class="step"><div class="num">3</div><h3>Travel Comfortably</h3><p>Enjoy a smooth outstation journey with Aashrides.</p></div>
       </div>
     </section>
@@ -147,116 +175,221 @@
     <div class="cta">
       <div><h2>Ready to plan your journey?</h2><p>Book your Delhi/NCR pickup with Aashrides.</p><p style="margin-top:10px;color:#e5e7eb;font-size:14px">Customer Care: +91 93112 79707<br>Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></p></div>
       <div><div style="font-size:13px;color:#cbd4e2;margin-bottom:7px">Customer Care</div>
-          <a class="btn primary" href="tel:+919311279707">📞 +91 93112 79707</a>
-          <div style="margin-top:10px;font-size:14px"><a href="mailto:aashrides@gmail.com" style="color:#fff">✉️ aashrides@gmail.com</a></div></div>
+        <a class="btn primary" href="tel:+919311279707">📞 +91 93112 79707</a>
+        <div style="margin-top:10px;font-size:14px"><a href="mailto:aashrides@gmail.com" style="color:#fff">✉️ aashrides@gmail.com</a></div>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="foot"><div><strong style="color:#fff">Aashrides</strong> — Delhi/NCR to anywhere in India.<br>Customer Care: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a><br>
-Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></div><div>© 2026 Aashrides. All rights reserved.</div></div>
+    Email: <a href="mailto:aashrides@gmail.com" style="color:#fff;font-weight:700">aashrides@gmail.com</a></div><div>© 2026 Aashrides. All rights reserved.</div></div>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
+    /*
+      AASHRIDES FARE RATES
+      5 Seater = ₹15/km
+      7 Seater = ₹18/km
+    */
+    const FARE = {
+      5: { name: "5 Seater Taxi", perKm: 15 },
+      7: { name: "7 Seater Taxi", perKm: 18 }
+    };
+
     const DELHI_NCR = {lat: 28.6139, lng: 77.2090};
-    const map = L.map('map', {zoomControl:true}).setView([DELHI_NCR.lat, DELHI_NCR.lng], 10);
+    let map, pickupMarker, directionsService, directionsRenderer;
+    let pickupPlace = null, dropPlace = null;
 
-    // OpenStreetMap map tiles: no Google API key required.
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    let marker = L.marker([DELHI_NCR.lat, DELHI_NCR.lng], {draggable:true}).addTo(map);
-
-    // Approximate Delhi/NCR service boundary for front-end validation.
-    const ncrBounds = L.latLngBounds([27.90, 76.75], [29.25, 78.05]);
-
-    function setPickup(lat, lng, addressText) {
-      const point = L.latLng(lat, lng);
-      if (!ncrBounds.contains(point)) {
-        alert("Aashrides pickup is currently available only within Delhi/NCR. Please select a location inside Delhi/NCR.");
-        return false;
-      }
-      marker.setLatLng(point);
-      document.getElementById("pickupLat").value = lat;
-      document.getElementById("pickupLng").value = lng;
-      if (addressText) document.getElementById("pickup").value = addressText;
-      return true;
+    function showResult(message, error=false){
+      const el = document.getElementById("result");
+      el.style.display = "block";
+      el.className = "result" + (error ? " error" : "");
+      el.textContent = message;
     }
 
-    async function reverseGeocode(lat, lng) {
-      try {
-        const res = await fetch(
-          "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
-          encodeURIComponent(lat) + "&lon=" + encodeURIComponent(lng)
-        );
-        const data = await res.json();
-        const name = data.display_name || (lat.toFixed(6) + ", " + lng.toFixed(6));
-        document.getElementById("pickup").value = name;
-      } catch(e) {
-        document.getElementById("pickup").value = lat.toFixed(6) + ", " + lng.toFixed(6);
-      }
+    function hideResult(){
+      const el = document.getElementById("result");
+      el.style.display = "none";
     }
 
-    map.on('click', async function(e) {
-      if (setPickup(e.latlng.lat, e.latlng.lng)) {
-        await reverseGeocode(e.latlng.lat, e.latlng.lng);
-      }
+    function initMap(){
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: DELHI_NCR,
+        zoom: 10,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true
+      });
+
+      pickupMarker = new google.maps.Marker({
+        position: DELHI_NCR,
+        map: map,
+        draggable: true,
+        title: "Pickup location"
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        suppressMarkers: false
+      });
+
+      const pickupInput = document.getElementById("pickup");
+      const dropInput = document.getElementById("drop");
+
+      const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, {
+        componentRestrictions: {country: "in"},
+        fields: ["geometry","formatted_address","name"]
+      });
+      pickupAutocomplete.addListener("place_changed", () => {
+        const place = pickupAutocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+          showResult("Please select a pickup location from the Google suggestions.", true);
+          return;
+        }
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        if (!isDelhiNCR(lat,lng)) {
+          showResult("Pickup is available only within Delhi/NCR.", true);
+          pickupInput.value = "";
+          pickupPlace = null;
+          return;
+        }
+        hideResult();
+        pickupPlace = place;
+        setPickupMarker(lat,lng);
+        map.setZoom(14);
+        map.panTo({lat,lng});
+        calculateAutoFare();
+      });
+
+      const dropAutocomplete = new google.maps.places.Autocomplete(dropInput, {
+        componentRestrictions: {country: "in"},
+        fields: ["geometry","formatted_address","name"]
+      });
+      dropAutocomplete.addListener("place_changed", () => {
+        const place = dropAutocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+          showResult("Please select the destination from the Google suggestions.", true);
+          return;
+        }
+        hideResult();
+        dropPlace = place;
+        calculateAutoFare();
+      });
+
+      pickupMarker.addListener("dragend", () => {
+        const p = pickupMarker.getPosition();
+        const lat = p.lat(), lng = p.lng();
+        if (!isDelhiNCR(lat,lng)) {
+          showResult("Pickup is available only within Delhi/NCR.", true);
+          setPickupMarker(DELHI_NCR.lat, DELHI_NCR.lng);
+          return;
+        }
+        hideResult();
+        pickupPlace = {
+          geometry: {location: p},
+          formatted_address: lat.toFixed(6) + ", " + lng.toFixed(6)
+        };
+        document.getElementById("pickup").value = pickupPlace.formatted_address;
+        calculateAutoFare();
+      });
+
+      document.getElementById("vehicle").addEventListener("change", calculateAutoFare);
+      document.getElementById("trip").addEventListener("change", calculateAutoFare);
+    }
+
+    function setPickupMarker(lat,lng){
+      const position = {lat:Number(lat), lng:Number(lng)};
+      pickupMarker.setPosition(position);
+      document.getElementById("pickupLat").value = position.lat;
+      document.getElementById("pickupLng").value = position.lng;
+    }
+
+    function isDelhiNCR(lat,lng){
+      return lat >= 27.90 && lat <= 29.25 && lng >= 76.75 && lng <= 78.05;
+    }
+
+    document.getElementById("centerBtn").addEventListener("click", () => {
+      if (!map) return;
+      map.setCenter(DELHI_NCR);
+      map.setZoom(10);
     });
 
-    marker.on('dragend', async function() {
-      const p = marker.getLatLng();
-      if (setPickup(p.lat, p.lng)) await reverseGeocode(p.lat, p.lng);
-    });
-
-    document.getElementById("centerBtn").addEventListener("click", function() {
-      map.setView([DELHI_NCR.lat, DELHI_NCR.lng], 10);
-    });
-
-    document.getElementById("locateBtn").addEventListener("click", function() {
+    document.getElementById("locateBtn").addEventListener("click", () => {
       if (!navigator.geolocation) {
-        alert("Your browser does not support location access.");
+        showResult("Your browser does not support location access.", true);
         return;
       }
-      navigator.geolocation.getCurrentPosition(
-        async function(pos) {
-          const lat = pos.coords.latitude, lng = pos.coords.longitude;
-          if (setPickup(lat, lng)) {
-            map.setView([lat, lng], 15);
-            await reverseGeocode(lat, lng);
-          }
-        },
-        function() {
-          alert("Location access was not allowed. You can select your pickup point directly on the map.");
-        },
-        {enableHighAccuracy:true, timeout:10000}
-      );
+      navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        if (!isDelhiNCR(lat,lng)) {
+          showResult("Your current location is outside the Delhi/NCR pickup area.", true);
+          return;
+        }
+        hideResult();
+        setPickupMarker(lat,lng);
+        pickupPlace = {
+          geometry: {location: new google.maps.LatLng(lat,lng)},
+          formatted_address: lat.toFixed(6) + ", " + lng.toFixed(6)
+        };
+        document.getElementById("pickup").value = pickupPlace.formatted_address;
+        map.setCenter({lat,lng});
+        map.setZoom(15);
+        calculateAutoFare();
+      }, () => {
+        showResult("Location access was not allowed. You can search your pickup location instead.", true);
+      }, {enableHighAccuracy:true, timeout:10000});
     });
 
     document.getElementById("date").min = new Date().toISOString().split("T")[0];
 
-    document.getElementById("bookingForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      const pickup = document.getElementById("pickup").value.trim();
-      const drop = document.getElementById("drop").value.trim();
-      const lat = document.getElementById("pickupLat").value;
-      const lng = document.getElementById("pickupLng").value;
-      const result = document.getElementById("result");
+    function calculateAutoFare(){
+      if(!pickupPlace || !pickupPlace.geometry || !dropPlace || !dropPlace.geometry) return;
 
-      if(!pickup || !drop) return;
+      const vehicle = document.getElementById("vehicle").value;
+      const trip = document.getElementById("trip").value;
 
-      if (!lat || !lng) {
-        result.style.display = "block";
-        result.textContent = "Please select your pickup point on the map first.";
-        return;
-      }
+      directionsService.route({
+        origin: pickupPlace.geometry.location,
+        destination: dropPlace.geometry.location,
+        travelMode: google.maps.TravelMode.DRIVING
+      }, (response, status) => {
+        if(status !== "OK" || !response.routes || !response.routes[0]){
+          showResult("Google Maps could not calculate this route. Please try another destination.", true);
+          return;
+        }
 
-      result.style.display = "block";
-      result.textContent = "Pickup selected: " + pickup + ". Route " + pickup + " → " + drop + " is ready for fare calculation.";
-    });
+        directionsRenderer.setDirections(response);
+
+        const legs = response.routes[0].legs;
+        let meters = 0;
+        legs.forEach(leg => meters += leg.distance.value);
+
+        const distanceKm = meters / 1000;
+        const rate = FARE[vehicle];
+        const billableKm = Math.ceil(distanceKm);
+
+        let total = billableKm * rate.perKm;
+        if(trip === "round") total = total * 2;
+
+        document.getElementById("fareVehicle").textContent = rate.name;
+        document.getElementById("fareDistance").textContent = distanceKm.toFixed(1) + " km";
+        document.getElementById("fareTrip").textContent = trip === "round" ? "Round Trip" : "One Way";
+        document.getElementById("fareKm").textContent = billableKm + " km × ₹" + rate.perKm;
+        document.getElementById("fareTotal").textContent = "₹" + total.toLocaleString("en-IN");
+        document.getElementById("fareBox").style.display = "block";
+      });
+    }
+
+    window.initMap = initMap;
   </script>
 
+  <!-- Google Maps API Key Add Karein -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap">
+  </script>
 </body>
 </html>
