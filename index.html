@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashrides | Delhi/NCR to Anywhere in India</title>
+  <title>Aashrides | Travel Beyond Boundaries</title>
   <meta name="description" content="Aashrides taxi booking service from Delhi/NCR to destinations across India. Fast fare estimate & instant booking.">
   
   <!-- FREE Leaflet Map CSS -->
@@ -15,10 +15,10 @@
     a{text-decoration:none;color:inherit}
     
     /* Navigation */
-    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:1000}
-    .navin{max-width:1100px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;letter-spacing:-.5px;color:#172033}
-    .logo img{height:44px;width:44px;object-fit:cover;border-radius:8px;background:#172033}
+    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+    .navin{max-width:1100px;margin:auto;padding:10px 22px;display:flex;align-items:center;justify-content:space-between}
+    .logo-container{display:flex;align-items:center;gap:12px}
+    .logo-img{height:60px;width:auto;object-fit:contain}
     .navlinks{display:flex;gap:25px;font-size:14px;font-weight:600}
     .navlinks a:hover{color:#f4b400}
     
@@ -33,9 +33,9 @@
     
     /* Hero Section */
     .hero{background:linear-gradient(120deg,#172033 0%,#263653 100%);color:#fff}
-    .heroin{max-width:1100px;margin:auto;padding:60px 22px 75px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+    .heroin{max-width:1100px;margin:auto;padding:50px 22px 75px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
     .eyebrow{color:#ffd25a;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1.2px;margin-bottom:12px}
-    h1{font-size:48px;line-height:1.1;margin-bottom:18px;letter-spacing:-1.2px}
+    h1{font-size:46px;line-height:1.1;margin-bottom:18px;letter-spacing:-1.2px}
     .hero p{color:#dce3ef;max-width:540px;font-size:16px;margin-bottom:26px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
     
@@ -59,7 +59,6 @@
     
     /* Fare Box & Results */
     .result{display:none;margin-top:12px;padding:12px;border-radius:8px;background:#fff8df;color:#6d5100;font-size:13px;border:1px solid #ffe89a}
-    .error{color:#b42318;background:#fff1f0;border-color:#fecdca}
     .farebox{display:none;margin-top:14px;border:2px dashed #f4b400;border-radius:12px;background:#fffdf5;padding:16px}
     .farebox h3{font-size:17px;margin-bottom:8px;color:#172033;display:flex;justify-content:space-between;align-items:center}
     .booking-id-tag{font-size:12px;background:#fff3cc;color:#8a6d00;padding:3px 8px;border-radius:6px;border:1px solid #ffe89a}
@@ -87,23 +86,17 @@
     .card{background:#fff;border:1px solid #e9edf3;border-radius:14px;padding:24px;box-shadow:0 2px 5px rgba(0,0,0,0.02)}
     .icon{font-size:30px;margin-bottom:12px}
     .card h3{margin-bottom:8px;font-size:18px}.card p{font-size:14px;color:#667085}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .step{text-align:center}
     
-    /* CTA & Footer */
-    .cta{background:#172033;color:#fff;border-radius:18px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .cta p{color:#cbd4e2;margin-top:4px}
+    /* Footer */
     footer{background:#111827;color:#b8c1cf}
-    .foot{max-width:1100px;margin:auto;padding:26px 22px;display:flex;justify-content:space-between;gap:20px;font-size:13px}
+    .foot{max-width:1100px;margin:auto;padding:26px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:13px}
     
     @media(max-width:850px){
-      .heroin{grid-template-columns:1fr;padding-top:40px}
-      h1{font-size:38px}
-      .cards,.steps{grid-template-columns:1fr}
+      .heroin{grid-template-columns:1fr;padding-top:30px}
+      h1{font-size:36px}
+      .cards{grid-template-columns:1fr}
       .navlinks{display:none}
-      .cta{display:block}
-      .cta .btn{margin-top:16px}
-      .foot{flex-direction:column;gap:12px}
+      .foot{flex-direction:column;gap:12px;text-align:center}
       .booking-table{display:block;overflow-x:auto}
     }
     @media(max-width:480px){
@@ -118,9 +111,9 @@
   <!-- Navigation Bar -->
   <nav class="nav">
     <div class="navin">
-      <a class="logo" href="#" aria-label="Aashrides Home">
-        <img src="./aashrides-logo.jpg" alt="Aashrides logo" onerror="this.src='https://via.placeholder.com/46?text=AR'">
-        <span>Aash<span style="color:#f4b400">rides</span></span>
+      <a class="logo-container" href="#" aria-label="Aashrides Home">
+        <!-- Logo Image updated with your filename -->
+        <img src="aashrides-logo~2.jpg" alt="Aashrides Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/150x60?text=Aashrides'">
       </a>
       <div class="navlinks">
         <a href="#book">Book Taxi</a>
@@ -135,7 +128,7 @@
   <header class="hero">
     <div class="heroin">
       <div>
-        <div class="eyebrow">Delhi/NCR • All India Taxi</div>
+        <div class="eyebrow">Delhi/NCR • Travel Beyond Boundaries</div>
         <h1>Your ride.<br>Our responsibility.</h1>
         <p>Reliable outstation taxi service from Delhi/NCR to destinations across India. Clear pricing, comfortable rides, and professional drivers.</p>
         <div class="hero-actions">
@@ -204,10 +197,8 @@
               <button type="button" id="centerBtn">Center Delhi/NCR</button>
             </div>
             <div id="map"></div>
-            <div class="google-note">🗺️ Powered by Free OpenStreetMap (No API key needed).</div>
+            <div class="google-note">🗺️ Powered by Free OpenStreetMap.</div>
           </div>
-
-          <div class="result" id="result"></div>
 
           <!-- Calculated Fare Estimate Box -->
           <div class="farebox" id="fareBox">
@@ -295,7 +286,7 @@
   <footer>
     <div class="foot">
       <div>
-        <strong style="color:#fff">Aashrides</strong> — Delhi/NCR to anywhere in India.<br>
+        <strong style="color:#fff">Aashrides</strong> — Travel Beyond Boundaries.<br>
         Helpdesk: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a>
       </div>
       <div>© 2026 Aashrides. All rights reserved.</div>
@@ -343,7 +334,6 @@
       return `AR-${year}-${randomNum}`;
     }
 
-    // Distance Calculation (Haversine Formula)
     function calculateDistance(lat1, lon1, lat2, lon2) {
       var R = 6371; 
       var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -369,14 +359,13 @@
       const lat2 = parseFloat(dropVal[0].trim());
       const lon2 = parseFloat(dropVal[1].trim());
 
-      // Update Map Markers & Route
       pickupMarker.setLatLng([lat1, lon1]);
       
       if (dropoffMarker) map.removeLayer(dropoffMarker);
       dropoffMarker = L.marker([lat2, lon2]).addTo(map).bindPopup("Drop Location");
 
       if (routePolyline) map.removeLayer(routePolyline);
-      routePolyline = L.polyline([[lat1, lon1], [lat2, lon2]], {color: 'blue', weight: 4}).addTo(map);
+      routePolyline = L.polyline([[lat1, lon1], [lat2, lon2]], {color: '#f4b400', weight: 4}).addTo(map);
       map.fitBounds(routePolyline.getBounds());
 
       const distanceKm = calculateDistance(lat1, lon1, lat2, lon2);
@@ -415,7 +404,6 @@
       });
     });
 
-    /* Step 1: Customer registers booking */
     document.getElementById("confirmBookingBtn").addEventListener("click", () => {
       const name = document.getElementById("custName").value;
       const phone = document.getElementById("custPhone").value;
@@ -448,7 +436,6 @@
       currentBookingId = null;
     });
 
-    /* Render Admin Dashboard Table */
     function renderAdminTable(){
       const tbody = document.getElementById("adminBookingList");
       if(bookingsDatabase.length === 0){
@@ -478,7 +465,6 @@
       `).join("");
     }
 
-    /* Step 2: Driver completes ride & sends WhatsApp Receipt */
     function completeRide(id){
       const booking = bookingsDatabase.find(b => b.id === id);
       if(!booking) return;
