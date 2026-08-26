@@ -26,29 +26,14 @@
 
     /* Header */
     .header { background: var(--brand-navy); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+    .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
     .logo-box { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--brand-gold); }
     .brand-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 900; line-height: 1; }
     .brand-title .w-white { color: #fff; }
     .brand-title .w-gold { color: var(--brand-gold); }
     .brand-sub { font-size: 8px; font-weight: 700; color: #cbd5e1; letter-spacing: 1.5px; }
-    .nav-btn { padding: 8px 16px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 700; background: var(--brand-gold); color: var(--brand-navy); }
-
-    /* Logo Image Branding Banner */
-    .brand-hero-header { background: #fff; padding: 25px 15px 15px; text-align: center; border-bottom: 2px solid #e2e8f0; font-family: 'Montserrat', sans-serif; }
-    .big-title { font-size: 2.6rem; font-weight: 900; letter-spacing: 2px; }
-    .big-title .t-navy { color: var(--brand-navy); }
-    .big-title .t-gold { color: var(--brand-gold); }
-    .sub-tagline { font-size: 13px; font-weight: 700; color: var(--brand-navy); letter-spacing: 3px; margin: 4px 0 10px; }
-    .ribbon-agency { display: inline-block; background: var(--brand-navy); color: #fff; padding: 5px 30px; font-size: 13px; font-weight: 800; letter-spacing: 2px; border-radius: 4px; border-bottom: 3px solid var(--brand-gold); }
-
-    /* 4 Badges */
-    .badges-row { max-width: 900px; margin: 20px auto 5px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    @media (max-width: 768px) { .badges-row { grid-template-columns: repeat(2, 1fr); gap: 12px; } .big-title { font-size: 1.8rem; } }
-    .badge-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .badge-icon { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--brand-navy); display: flex; align-items: center; justify-content: center; color: var(--brand-navy); font-size: 18px; margin-bottom: 6px; background: #f8fafc; }
-    .badge-txt { font-size: 11px; font-weight: 800; color: var(--brand-navy); line-height: 1.2; text-transform: uppercase; }
+    .nav-btn { padding: 8px 18px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 700; background: var(--brand-gold); color: var(--brand-navy); }
 
     /* Main Container */
     .main-section { background: linear-gradient(rgba(13, 34, 56, 0.94), rgba(13, 34, 56, 0.94)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200') center/cover no-repeat; padding: 35px 15px 50px; }
@@ -108,9 +93,7 @@
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-    .floating-wa:hover {
-      transform: scale(1.1);
-    }
+    .floating-wa:hover { transform: scale(1.1); }
   </style>
 </head>
 <body>
@@ -129,33 +112,7 @@
     </div>
   </header>
 
-  <!-- Brand Banner -->
-  <section class="brand-hero-header">
-    <div class="big-title"><span class="t-navy">AASH</span><span class="t-gold">RIDES</span></div>
-    <div class="sub-tagline">TRAVEL BEYOND BOUNDARIES</div>
-    <div><span class="ribbon-agency">— TAXI & TRAVEL AGENCY —</span></div>
-
-    <div class="badges-row">
-      <div class="badge-item">
-        <div class="badge-icon"><i class="fas fa-users"></i></div>
-        <div class="badge-txt">7 SEATER<br>COMFORT</div>
-      </div>
-      <div class="badge-item">
-        <div class="badge-icon"><i class="fas fa-shield-alt"></i></div>
-        <div class="badge-txt">SAFE &<br>RELIABLE</div>
-      </div>
-      <div class="badge-item">
-        <div class="badge-icon"><i class="fas fa-suitcase-rolling"></i></div>
-        <div class="badge-txt">OUTSTATION<br>SPECIALIST</div>
-      </div>
-      <div class="badge-item">
-        <div class="badge-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="badge-txt">YOUR JOURNEY<br>OUR PRIORITY</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Booking & GPS Section -->
+  <!-- Booking & GPS Section (Direct & Clean) -->
   <section class="main-section">
     <div class="main-grid">
       <!-- Left Box -->
@@ -266,7 +223,7 @@
     <p style="font-size:11px; color:#64748b; margin-top:15px;">© 2025 AASHRIDES. All Rights Reserved.</p>
   </footer>
 
-  <!-- Floating WhatsApp Button with Custom Share Message -->
+  <!-- Floating WhatsApp Button with Custom Promo Message -->
   <button onclick="shareOnWhatsApp()" class="floating-wa" title="Share / Contact on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </button>
@@ -285,7 +242,6 @@
     let totalKm = 0;
     let wakeLock = null;
 
-    // Floating WhatsApp Icon Custom Promo Message Handler
     function shareOnWhatsApp() {
       const promoMsg = 
 `🚖 *Aashrides – Your Trusted Travel Partner*
