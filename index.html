@@ -1,491 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashrides | Travel Beyond Boundaries</title>
-  <meta name="description" content="Aashrides taxi booking service from Delhi/NCR to destinations across India. Fast fare estimate & instant booking.">
-  
-  <!-- FREE Leaflet Map CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
+  <title>Aashrides Admin Dashboard</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:#172033;background:#f7f9fc;line-height:1.5}
-    a{text-decoration:none;color:inherit}
-    
-    /* Navigation */
-    .nav{background:#fff;border-bottom:1px solid #e8ebf0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
-    .navin{max-width:1100px;margin:auto;padding:10px 22px;display:flex;align-items:center;justify-content:space-between}
-    .logo-container{display:flex;align-items:center;gap:12px}
-    .logo-img{height:60px;width:auto;object-fit:contain}
-    .navlinks{display:flex;gap:25px;font-size:14px;font-weight:600}
-    .navlinks a:hover{color:#f4b400}
-    
-    /* Buttons */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;padding:12px 20px;font-weight:700;cursor:pointer;text-align:center;transition:all 0.2s ease}
-    .primary{background:#f4b400;color:#161616}.primary:hover{background:#e0a500}
-    .dark{background:#172033;color:#fff}.dark:hover{background:#22304d}
-    .action-btn{background:#172033;color:#fff;width:100%;margin-top:14px;font-size:16px;padding:14px;border-radius:10px}
-    .action-btn:hover{background:#22304d}
-    .whatsapp-btn{background:#25d366;color:#fff;padding:8px 12px;border-radius:6px;font-size:13px;border:none;cursor:pointer;font-weight:bold}
-    .whatsapp-btn:hover{background:#20ba5a}
-    
-    /* Hero Section */
-    .hero{background:linear-gradient(120deg,#172033 0%,#263653 100%);color:#fff}
-    .heroin{max-width:1100px;margin:auto;padding:50px 22px 75px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
-    .eyebrow{color:#ffd25a;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:1.2px;margin-bottom:12px}
-    h1{font-size:46px;line-height:1.1;margin-bottom:18px;letter-spacing:-1.2px}
-    .hero p{color:#dce3ef;max-width:540px;font-size:16px;margin-bottom:26px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    
-    /* Booking Card */
-    .booking{background:#fff;color:#172033;border-radius:18px;padding:25px;box-shadow:0 18px 50px rgba(0,0,0,0.3)}
-    .booking h2{font-size:22px;margin-bottom:4px}
-    .booking .sub{font-size:13px;color:#667085;margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    label{display:block;font-size:12px;font-weight:700;margin-bottom:5px;color:#475467}
-    input,select{width:100%;padding:11px 12px;border:1px solid #d9dee8;border-radius:8px;font-size:14px;outline:none;background:#fff;transition:border 0.2s}
-    input:focus,select:focus{border-color:#f4b400}
-    .full{grid-column:1/-1}
-    
-    /* Map Box */
-    .mapbox{margin-top:14px;border:1px solid #d9dee8;border-radius:12px;overflow:hidden;background:#eef2f7}
-    #map{height:250px;width:100%;z-index:1}
-    .maptools{display:flex;gap:8px;padding:8px 10px;background:#fff;border-bottom:1px solid #e9edf3}
-    .maptools button{border:1px solid #d9dee8;background:#fff;border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer}
-    .maptools button:hover{background:#f4b400;border-color:#f4b400}
-    .google-note{font-size:11px;color:#667085;padding:8px 11px;background:#fff}
-    
-    /* Fare Box & Results */
-    .result{display:none;margin-top:12px;padding:12px;border-radius:8px;background:#fff8df;color:#6d5100;font-size:13px;border:1px solid #ffe89a}
-    .farebox{display:none;margin-top:14px;border:2px dashed #f4b400;border-radius:12px;background:#fffdf5;padding:16px}
-    .farebox h3{font-size:17px;margin-bottom:8px;color:#172033;display:flex;justify-content:space-between;align-items:center}
-    .booking-id-tag{font-size:12px;background:#fff3cc;color:#8a6d00;padding:3px 8px;border-radius:6px;border:1px solid #ffe89a}
-    .fareline{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:4px 0;color:#344054}
-    .faretotal{border-top:1px solid #ffe89a;margin-top:8px;padding-top:8px;font-size:20px;font-weight:800;color:#172033;display:flex;justify-content:space-between}
-    .booking-success{display:none;margin-top:14px;padding:14px;border-radius:10px;background:#e2f7e7;color:#1e7e34;border:1px solid #c3e6cb;text-align:center;font-size:14px}
-    .notice{font-size:11px;color:#667085;margin-top:10px;text-align:center;line-height:1.4}
-
-    /* Admin Panel Section */
-    .admin-section{background:#eef2f7;border:2px solid #d9dee8;border-radius:18px;padding:25px;margin-top:40px}
-    .admin-title{font-size:20px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-    .booking-table{width:100%;border-collapse:collapse;margin-top:15px;background:#fff;border-radius:8px;overflow:hidden;font-size:13px}
-    .booking-table th, .booking-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #e8ebf0}
-    .booking-table th{background:#172033;color:#fff}
-    .status-badge{padding:3px 8px;border-radius:4px;font-weight:bold;font-size:11px}
-    .status-pending{background:#fff3cd;color:#856404}
-    .status-completed{background:#d4edda;color:#155724}
-
-    /* General Sections */
-    section{max-width:1100px;margin:auto;padding:65px 22px}
-    .sectionhead{text-align:center;margin-bottom:34px}
-    .sectionhead h2{font-size:32px}
-    .sectionhead p{color:#667085;margin-top:6px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:#fff;border:1px solid #e9edf3;border-radius:14px;padding:24px;box-shadow:0 2px 5px rgba(0,0,0,0.02)}
-    .icon{font-size:30px;margin-bottom:12px}
-    .card h3{margin-bottom:8px;font-size:18px}.card p{font-size:14px;color:#667085}
-    
-    /* Footer */
-    footer{background:#111827;color:#b8c1cf}
-    .foot{max-width:1100px;margin:auto;padding:26px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:13px}
-    
-    @media(max-width:850px){
-      .heroin{grid-template-columns:1fr;padding-top:30px}
-      h1{font-size:36px}
-      .cards{grid-template-columns:1fr}
-      .navlinks{display:none}
-      .foot{flex-direction:column;gap:12px;text-align:center}
-      .booking-table{display:block;overflow-x:auto}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      margin: 20px;
+      color: #333;
     }
-    @media(max-width:480px){
-      .grid{grid-template-columns:1fr}
-      .booking{padding:18px}
-      section{padding:45px 16px}
+    h2 {
+      text-align: center;
+      color: #1a202c;
     }
+    .table-container {
+      overflow-x: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+    }
+    th {
+      background-color: #f8fafc;
+      color: #4a5568;
+      font-weight: 600;
+    }
+    tr:hover {
+      background-color: #f8fafc;
+    }
+    /* Status Badges */
+    .status-badge {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .status-confirmed { background-color: #e0f2fe; color: #0284c7; }
+    .status-completed { background-color: #dcfce7; color: #16a34a; }
+
+    /* Action Buttons */
+    .btn {
+      padding: 7px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin: 2px 0;
+      text-decoration: none;
+    }
+    .btn-driver {
+      background-color: #2563eb;
+      color: white;
+    }
+    .btn-driver:hover { background-color: #1d4ed8; }
+    
+    .btn-complete {
+      background-color: #16a34a;
+      color: white;
+    }
+    .btn-complete:hover { background-color: #15803d; }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="nav">
-    <div class="navin">
-      <a class="logo-container" href="#" aria-label="Aashrides Home">
-        <img src="aashrides-logo.jpg" alt="Aashrides Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/150x60?text=Aashrides'">
-      </a>
-      <div class="navlinks">
-        <a href="#book">Book Taxi</a>
-        <a href="#services">Services</a>
-        <a href="#admin">Driver Dashboard</a>
-      </div>
-      <a class="btn primary" href="#book">Book Now</a>
-    </div>
-  </nav>
+  <h2>🚖 Aashrides - Booking & Tour Management</h2>
 
-  <!-- Hero & Booking Form Section -->
-  <header class="hero">
-    <div class="heroin">
-      <div>
-        <div class="eyebrow">Delhi/NCR • Travel Beyond Boundaries</div>
-        <h1>Your ride.<br>Our responsibility.</h1>
-        <p>Reliable outstation taxi service from Delhi/NCR to destinations across India. Clear pricing, comfortable rides, and professional drivers.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#book">Book a Taxi</a>
-          <a class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)" href="#services">Explore Services</a>
-        </div>
-      </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Customer</th>
+          <th>Route & Trip</th>
+          <th>Distance</th>
+          <th>Fare</th>
+          <th>Driver & Vehicle</th>
+          <th>Status</th>
+          <th>WhatsApp Actions</th>
+        </tr>
+      </thead>
+      <tbody id="bookingTableBody">
+        <!-- JavaScript se row generate hongi -->
+      </tbody>
+    </table>
+  </div>
 
-      <!-- Interactive Booking Widget -->
-      <div class="booking" id="book">
-        <h2>Book Your Ride</h2>
-        <div class="sub">Pickup: Delhi/NCR | Destination: Anywhere in India</div>
-        
-        <form id="bookingForm" onsubmit="return false;">
-          <div class="grid">
-            <div class="full">
-              <label for="custName">Customer Full Name</label>
-              <input id="custName" placeholder="Enter your name" required>
-            </div>
-
-            <div class="full">
-              <label for="custPhone">Mobile Number (WhatsApp Enabled)</label>
-              <input id="custPhone" type="tel" placeholder="Enter 10-digit mobile number" required>
-            </div>
-
-            <div class="full">
-              <label for="pickup">Pickup Coordinates / Address (Delhi/NCR)</label>
-              <input id="pickup" placeholder="e.g. 28.6139, 77.2090 or Delhi Address" required>
-            </div>
-
-            <div class="full">
-              <label for="drop">Drop Coordinates / Address</label>
-              <input id="drop" placeholder="e.g. 26.9124, 75.7873 or Jaipur Address" required>
-            </div>
-
-            <div>
-              <label for="date">Pickup Date</label>
-              <input id="date" type="date" required>
-            </div>
-            <div>
-              <label for="time">Pickup Time</label>
-              <input id="time" type="time" required>
-            </div>
-            <div>
-              <label for="trip">Trip Type</label>
-              <select id="trip">
-                <option value="oneway">One Way</option>
-                <option value="round">Round Trip</option>
-              </select>
-            </div>
-            <div>
-              <label for="vehicle">Taxi Choice</label>
-              <select id="vehicle">
-                <option value="5">5 Seater Taxi (₹15/km)</option>
-                <option value="7">7 Seater Taxi (₹18/km)</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="button" class="btn action-btn" style="background:#f4b400;color:#161616;margin-top:15px;" onclick="calculateAutoFare()">Calculate Fare & Show Route</button>
-
-          <!-- Interactive Free Map Container -->
-          <div class="mapbox">
-            <div class="maptools">
-              <button type="button" id="locateBtn">📍 Use My Location</button>
-              <button type="button" id="centerBtn">Center Delhi/NCR</button>
-            </div>
-            <div id="map"></div>
-            <div class="google-note">🗺️ Powered by Free OpenStreetMap.</div>
-          </div>
-
-          <!-- Calculated Fare Estimate Box -->
-          <div class="farebox" id="fareBox">
-            <h3>
-              <span>💰 Fare Estimate</span>
-              <span class="booking-id-tag">ID: <strong id="bookingIdText">AR-0000</strong></span>
-            </h3>
-            <div class="fareline"><span>Vehicle Type</span><strong id="fareVehicle">5 Seater Taxi</strong></div>
-            <div class="fareline"><span>Total Distance</span><strong id="fareDistance">0 km</strong></div>
-            <div class="fareline"><span>Trip Mode</span><strong id="fareTrip">One Way</strong></div>
-            <div class="fareline"><span>Rate Breakdown</span><strong id="fareKm">0 km × ₹15</strong></div>
-            <div class="faretotal"><span>Total Payment:</span><span id="fareTotal">₹0</span></div>
-            
-            <button type="button" id="confirmBookingBtn" class="btn action-btn">🚖 Confirm & Register Booking</button>
-          </div>
-
-          <!-- Success Box -->
-          <div class="booking-success" id="bookingSuccess">
-            <strong>✅ Booking Confirmed!</strong><br>
-            Aapka Booking ID hai: <b id="successBookingId">AR-2026-0000</b>.<br>
-            Ride complete hone par aapko WhatsApp par final receipt message mil jayega.
-          </div>
-
-          <div class="notice">* Note: Toll tax, state permit taxes & parking extra rahenge.</div>
-        </form>
-      </div>
-    </div>
-  </header>
-
-  <!-- Driver / Admin Panel Section -->
-  <section id="admin">
-    <div class="admin-section">
-      <div class="admin-title">
-        <span>🚖 Driver / Admin Booking Management</span>
-        <span style="font-size:12px;font-weight:normal;color:#667085">Mark Ride Complete to send WhatsApp Receipt</span>
-      </div>
-      
-      <table class="booking-table">
-        <thead>
-          <tr>
-            <th>Booking ID</th>
-            <th>Customer Name</th>
-            <th>Phone</th>
-            <th>Pickup → Drop</th>
-            <th>Estimated Fare</th>
-            <th>Status</th>
-            <th>Action (Ride Complete)</th>
-          </tr>
-        </thead>
-        <tbody id="adminBookingList">
-          <tr>
-            <td colspan="7" style="text-align:center;color:#667085">Abhi tak koi booking register nahi hui hai.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services">
-    <div class="sectionhead">
-      <h2>Our Outstation Services</h2>
-      <p>Comfortable travel options for corporate trips, family vacations, and emergency travel.</p>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🚕</div>
-        <h3>One-Way Taxi</h3>
-        <p>Drop-only outstation service from Delhi/NCR to any city in India without return fare stress.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🔄</div>
-        <h3>Round Trip</h3>
-        <p>Flexible round-trip outstation cabs with dedicated drivers for multi-day vacations or meetings.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🛣️</div>
-        <h3>All-India Travel</h3>
-        <p>Reliable long-distance network connecting Delhi, Noida, Gurgaon, Ghaziabad to anywhere in India.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="foot">
-      <div>
-        <strong style="color:#fff">Aashrides</strong> — Travel Beyond Boundaries.<br>
-        Helpdesk: <a href="tel:+919311279707" style="color:#fff;font-weight:700">+91 93112 79707</a>
-      </div>
-      <div>© 2026 Aashrides. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <!-- FREE LEAFLET JS SCRIPT -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  
   <script>
-    const FARE_RATES = {
-      5: { name: "5 Seater Sedan/Hatchback", perKm: 15 },
-      7: { name: "7 Seater SUV/MUV", perKm: 18 }
-    };
+    // Business Settings
+    const GOOGLE_REVIEW_LINK = "https://g.page/r/YOUR_GOOGLE_REVIEW_LINK"; // Apni review link dalein
 
-    const DELHI_NCR_CENTER = [28.6139, 77.2090];
-    let map, pickupMarker, dropoffMarker, routePolyline;
-    let currentCalculatedFare = 0;
-    let currentBookingId = null;
-    let bookingsDatabase = [];
-
-    // Initialize Leaflet Map
-    function initMap() {
-      map = L.map('map').setView(DELHI_NCR_CENTER, 10);
-
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-      }).addTo(map);
-
-      pickupMarker = L.marker(DELHI_NCR_CENTER, {draggable: true}).addTo(map)
-        .bindPopup("Drag to set Pickup Location");
-
-      pickupMarker.on('dragend', function (e) {
-        var coord = e.target.getLatLng();
-        document.getElementById("pickup").value = `${coord.lat.toFixed(4)}, ${coord.lng.toFixed(4)}`;
-      });
-    }
-
-    initMap();
-
-    function generateBookingId() {
-      const year = new Date().getFullYear();
-      const randomNum = Math.floor(1000 + Math.random() * 9000);
-      return `AR-${year}-${randomNum}`;
-    }
-
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-      var R = 6371; 
-      var dLat = (lat2 - lat1) * Math.PI / 180;
-      var dLon = (lon2 - lon1) * Math.PI / 180;
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-              Math.sin(dLon/2) * Math.sin(dLon/2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-      return R * c; 
-    }
-
-    function calculateAutoFare() {
-      const pickupVal = document.getElementById("pickup").value.split(',');
-      const dropVal = document.getElementById("drop").value.split(',');
-
-      if (pickupVal.length < 2 || dropVal.length < 2) {
-        alert("Kripya Pickup aur Drop Coordinates enter karein (e.g. 28.6139, 77.2090)");
-        return;
+    // Sample Bookings Database
+    let bookingsDatabase = [
+      {
+        id: "AR-101",
+        name: "Rahul Sharma",
+        phone: "9876543210",
+        pickup: "Delhi Airport (T3)",
+        drop: "Agra (Taj Mahal)",
+        tripType: "Outstation",
+        distanceKm: 230,
+        fare: 3500,
+        driverName: "Ramesh Kumar",
+        driverPhone: "9811223344",
+        vehicleName: "Swift Dzire (Sedan)",
+        vehicleNumber: "DL 01 AB 1234",
+        status: "Confirmed" // Confirmed ya Completed
+      },
+      {
+        id: "AR-102",
+        name: "Amit Verma",
+        phone: "9123456780",
+        pickup: "Jaipur Railway Station",
+        drop: "Udaipur",
+        tripType: "Outstation (Tour)",
+        distanceKm: 395,
+        fare: 6200,
+        driverName: "Vikram Singh",
+        driverPhone: "9822334455",
+        vehicleName: "Toyota Innova Crysta",
+        vehicleNumber: "RJ 14 XY 9876",
+        status: "Confirmed"
       }
+    ];
 
-      const lat1 = parseFloat(pickupVal[0].trim());
-      const lon1 = parseFloat(pickupVal[1].trim());
-      const lat2 = parseFloat(dropVal[0].trim());
-      const lon2 = parseFloat(dropVal[1].trim());
-
-      pickupMarker.setLatLng([lat1, lon1]);
-      
-      if (dropoffMarker) map.removeLayer(dropoffMarker);
-      dropoffMarker = L.marker([lat2, lon2]).addTo(map).bindPopup("Drop Location");
-
-      if (routePolyline) map.removeLayer(routePolyline);
-      routePolyline = L.polyline([[lat1, lon1], [lat2, lon2]], {color: '#f4b400', weight: 4}).addTo(map);
-      map.fitBounds(routePolyline.getBounds());
-
-      const distanceKm = calculateDistance(lat1, lon1, lat2, lon2);
-      const vehicleVal = document.getElementById("vehicle").value;
-      const tripVal = document.getElementById("trip").value;
-      const rateInfo = FARE_RATES[vehicleVal];
-      const billableKm = Math.ceil(distanceKm);
-
-      let totalFare = billableKm * rateInfo.perKm;
-      if(tripVal === "round") totalFare = totalFare * 2;
-
-      currentCalculatedFare = totalFare;
-      if(!currentBookingId) currentBookingId = generateBookingId();
-
-      document.getElementById("bookingIdText").textContent = currentBookingId;
-      document.getElementById("fareVehicle").textContent = rateInfo.name;
-      document.getElementById("fareDistance").textContent = distanceKm.toFixed(1) + " km";
-      document.getElementById("fareTrip").textContent = tripVal === "round" ? "Round Trip" : "One Way";
-      document.getElementById("fareKm").textContent = billableKm + " km × ₹" + rateInfo.perKm;
-      document.getElementById("fareTotal").textContent = "₹" + totalFare.toLocaleString("en-IN");
-      document.getElementById("fareBox").style.display = "block";
+    // Phone Number Formatter (Indian Number Safe)
+    function formatPhoneNumber(phone) {
+      let clean = phone.toString().replace(/[^0-9]/g, '');
+      if (clean.length === 11 && clean.startsWith('0')) {
+        clean = clean.substring(1);
+      }
+      if (clean.length === 10) {
+        clean = '91' + clean;
+      }
+      return clean;
     }
 
-    document.getElementById("centerBtn").addEventListener("click", () => {
-      map.setView(DELHI_NCR_CENTER, 10);
-    });
+    // 1. WhatsApp Action: Send Driver & Booking Details
+    function sendDriverDetails(id) {
+      const b = bookingsDatabase.find(item => item.id === id);
+      if (!b) return;
 
-    document.getElementById("locateBtn").addEventListener("click", () => {
-      if (!navigator.geolocation) return alert("Geolocation not supported");
-      navigator.geolocation.getCurrentPosition(pos => {
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        map.setView([lat, lng], 13);
-        pickupMarker.setLatLng([lat, lng]);
-        document.getElementById("pickup").value = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-      });
-    });
+      const message = 
+`Namaste *${b.name}* ji! 🚕
 
-    document.getElementById("confirmBookingBtn").addEventListener("click", () => {
-      const name = document.getElementById("custName").value;
-      const phone = document.getElementById("custPhone").value;
-      const pickup = document.getElementById("pickup").value;
-      const drop = document.getElementById("drop").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
+Aapki Taxi Booking Confirm ho gayi hai. Safar ki details niche di gayi hain:
 
-      if(!name || !phone || !pickup || !drop || !date || !time){
-        alert("Kripya saari details sahi se bharein.");
-        return;
-      }
+🆔 *Booking ID:* ${b.id}
+📍 *Pickup:* ${b.pickup}
+🚩 *Drop:* ${b.drop}
+🛣️ *Trip Type:* ${b.tripType} (${b.distanceKm} KM)
+💰 *Estimated Fare:* ₹${Number(b.fare).toLocaleString("en-IN")}
 
-      const newBooking = {
-        id: currentBookingId,
-        name: name,
-        phone: phone,
-        pickup: pickup,
-        drop: drop,
-        fare: currentCalculatedFare,
-        status: "Pending"
-      };
+👨‍✈️ *Driver & Cab Details:*
+• *Driver Name:* ${b.driverName}
+• *Contact No:* ${b.driverPhone}
+• *Vehicle:* ${b.vehicleName}
+• *Vehicle No:* ${b.vehicleNumber}
 
-      bookingsDatabase.push(newBooking);
-      document.getElementById("successBookingId").textContent = currentBookingId;
-      document.getElementById("bookingSuccess").style.display = "block";
-      document.getElementById("fareBox").style.display = "none";
+Driver pickup time par aapse contact karenge.
+Safe journey with *Aashrides*! ✨`;
 
+      const waPhone = formatPhoneNumber(b.phone);
+      window.open(`https://api.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // 2. WhatsApp Action: Complete Ride & Send Final Receipt + Feedback
+    function completeRide(id) {
+      const b = bookingsDatabase.find(item => item.id === id);
+      if (!b) return;
+
+      b.status = "Completed";
       renderAdminTable();
-      currentBookingId = null;
-    });
 
-    function renderAdminTable(){
-      const tbody = document.getElementById("adminBookingList");
-      if(bookingsDatabase.length === 0){
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#667085">Abhi tak koi booking register nahi hui hai.</td></tr>`;
-        return;
-      }
+      const receiptMessage = 
+`Hello *${b.name}*,
+
+🎉 *Aapka Safar Safaltapoorvak Pura Hua!*
+
+🆔 *Booking ID:* ${b.id}
+📍 *Route:* ${b.pickup} ➔ ${b.drop}
+🛣️ *Total Distance:* ${b.distanceKm} KM
+👨‍✈️ *Driver:* ${b.driverName} (${b.vehicleNumber})
+💰 *Final Paid Amount:* ₹${Number(b.fare).toLocaleString("en-IN")}
+
+⭐ *Rate Your Journey / Feedback:*
+Kripya apna anubhav hamare sath share karein:
+👉 ${GOOGLE_REVIEW_LINK}
+
+Thank you for choosing *Aashrides*! Dobara seva ka mauka zaroor dein! 🚕✨`;
+
+      const waPhone = formatPhoneNumber(b.phone);
+      window.open(`https://api.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(receiptMessage)}`, '_blank');
+    }
+
+    // Render Data into Table
+    function renderAdminTable() {
+      const tbody = document.getElementById("bookingTableBody");
+      if (!tbody) return;
 
       tbody.innerHTML = bookingsDatabase.map(b => `
         <tr>
           <td><b>${b.id}</b></td>
-          <td>${b.name}</td>
-          <td>${b.phone}</td>
-          <td>${b.pickup} → ${b.drop}</td>
-          <td>₹${b.fare.toLocaleString("en-IN")}</td>
+          <td><b>${b.name}</b><br><span style="color:#718096; font-size:12px;">📞 ${b.phone}</span></td>
           <td>
-            <span class="status-badge ${b.status === 'Completed' ? 'status-completed' : 'status-pending'}">
+            <b>${b.pickup}</b> ➔ <b>${b.drop}</b><br>
+            <span style="font-size:12px; color:#4a5568;">Type: ${b.tripType}</span>
+          </td>
+          <td><b>${b.distanceKm} KM</b></td>
+          <td><b>₹${Number(b.fare).toLocaleString("en-IN")}</b></td>
+          <td>
+            <b>${b.driverName}</b> (${b.driverPhone})<br>
+            <span style="color:#718096; font-size:12px;">🚗 ${b.vehicleName} [${b.vehicleNumber}]</span>
+          </td>
+          <td>
+            <span class="status-badge ${b.status === 'Completed' ? 'status-completed' : 'status-confirmed'}">
               ${b.status}
             </span>
           </td>
           <td>
-            ${b.status === 'Pending' ? 
-              `<button class="whatsapp-btn" onclick="completeRide('${b.id}')">✅ Complete Ride & Send Receipt</button>` : 
-              `<span style="color:#20ba5a;font-weight:bold">Message Sent</span>`
+            <button class="btn btn-driver" onclick="sendDriverDetails('${b.id}')">
+              📲 Send Driver Info
+            </button>
+            <br>
+            ${b.status !== 'Completed' ? 
+              `<button class="btn btn-complete" onclick="completeRide('${b.id}')">
+                ✅ Complete & Receipt
+              </button>` : 
+              `<span style="color:#16a34a; font-size:12px; font-weight:bold;">✔ Ride Completed</span>`
             }
           </td>
         </tr>
       `).join("");
     }
 
-    function completeRide(id){
-      const booking = bookingsDatabase.find(b => b.id === id);
-      if(!booking) return;
-
-      booking.status = "Completed";
-      renderAdminTable();
-
-      const receiptMessage = `Hello ${booking.name},%0A%0A` +
-        `🎉 *Aapki Ride Successful Complete Ho Gayi Hai!*%0A` +
-        `🆔 *Booking ID:* ${booking.id}%0A` +
-        `📍 *Pickup:* ${booking.pickup}%0A` +
-        `🚩 *Drop:* ${booking.drop}%0A` +
-        `💰 *Final Paid Amount:* ₹${booking.fare.toLocaleString("en-IN")}%0A%0A` +
-        `Thank you for riding with *Aashrides*! Have a great day ahead! 🚕✨`;
-
-      let cleanPhone = booking.phone.replace(/[^0-9]/g, '');
-      if(!cleanPhone.startsWith('91') && cleanPhone.length === 10){
-        cleanPhone = '91' + cleanPhone;
-      }
-
-      window.open(`https://wa.me/${cleanPhone}?text=${receiptMessage}`, '_blank');
-    }
+    // Initial Load
+    renderAdminTable();
   </script>
 </body>
 </html>
