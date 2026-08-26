@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aash rides - Premium Taxi & Touring Services</title>
+  <title>Aashrides - Premium Taxi & Touring Services</title>
   
+  <!-- Website Favicon (Tab Icon) -->
+  <link rel="icon" type="image/png" href="logo.png">
+
   <!-- Google Fonts & Font Awesome Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,25 +19,18 @@
       --secondary: #0f172a;    /* Premium Dark Navy */
       --light-bg: #f8fafc;
       --card-bg: #ffffff;
-      --text-main: #1e293b;
+      --text: #1e293b;
       --text-muted: #64748b;
       --whatsapp: #25D366;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --nav-blue: #2563eb;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background-color: var(--light-bg); color: var(--text); line-height: 1.6; }
 
-    body {
-      background-color: var(--light-bg);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    /* Top Navigation */
+    /* Header */
     .header {
       background: var(--secondary);
       position: sticky;
@@ -48,144 +44,187 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px;
+      padding: 10px 20px;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
+    .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-    .nav-actions {
-      display: flex;
       gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .logo-tagline {
+      font-size: 10px;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      display: block;
     }
     .nav-btn {
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 30px;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
+      background: var(--primary);
+      color: var(--secondary);
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: 0.3s;
     }
-    .btn-call {
-      background: var(--primary);
-      color: var(--secondary);
-    }
-    .btn-call:hover {
+    .nav-btn:hover {
       background: var(--primary-hover);
       color: #fff;
     }
 
-    /* Hero Section */
+    /* Main Container */
     .hero {
-      background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200') center/cover no-repeat;
-      padding: 50px 20px;
+      background: linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.92)), url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1200') center/cover no-repeat;
+      padding: 30px 15px 50px;
       color: #ffffff;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 2.3rem;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .hero p {
-      font-size: 1rem;
-      color: #cbd5e1;
-      margin-bottom: 25px;
-    }
-
-    /* Booking Engine Box */
-    .booking-wrapper {
-      max-width: 850px;
+    .main-grid {
+      max-width: 1200px;
       margin: auto;
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-      color: var(--text-main);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
       text-align: left;
     }
-    .booking-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--secondary);
-      margin-bottom: 15px;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      color: var(--text);
     }
+
+    /* Tabs for Customer & Driver */
+    .mode-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 13px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: var(--secondary);
+    }
+
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
     }
     .form-group label {
       font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 5px;
       display: block;
+      margin-bottom: 3px;
     }
     .form-group input, .form-group select {
       width: 100%;
       padding: 10px 12px;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
-      transition: 0.2s;
     }
-    .form-group input:focus, .form-group select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
-    }
+
     .fare-preview {
       grid-column: 1 / -1;
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-radius: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
+      margin-top: 5px;
     }
-    .fare-price {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #16a34a;
-    }
-    .submit-btn {
-      grid-column: 1 / -1;
-      background: var(--whatsapp);
-      color: #ffffff;
+    .fare-price { font-size: 1.3rem; font-weight: 700; color: var(--success); }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
       border: none;
-      padding: 14px;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      transition: 0.3s;
+      gap: 8px;
+      text-decoration: none;
+      margin-top: 8px;
     }
-    .submit-btn:hover {
-      background: #1eb956;
-      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    .btn-wa { background: var(--whatsapp); color: #fff; }
+    .btn-start { background: var(--success); color: #fff; }
+    .btn-stop { background: var(--danger); color: #fff; display: none; }
+    .btn-nav { background: var(--nav-blue); color: #fff; }
+
+    /* Map Box */
+    .map-wrapper {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .meter-dashboard {
+      background: var(--secondary);
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .stat-val { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+    .stat-lbl { font-size: 10px; color: #94a3b8; }
+    #map { width: 100%; height: 360px; border-radius: 8px; }
+
+    #rideSummaryBox {
+      display: none;
+      background: #ecfdf5;
+      border: 1.5px solid #10b981;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      color: #064e3b;
     }
 
-    /* Sections */
+    /* Fleet Section */
     .section {
       max-width: 1200px;
       margin: auto;
@@ -199,12 +238,6 @@
       font-size: 1.9rem;
       color: var(--secondary);
     }
-    .section-header p {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Fleet Cards */
     .fleet-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -239,11 +272,6 @@
       color: var(--primary);
       margin-bottom: 15px;
     }
-    .fleet-card h3 {
-      font-size: 1.3rem;
-      color: var(--secondary);
-      margin-bottom: 5px;
-    }
     .fleet-rate {
       font-size: 1.6rem;
       font-weight: 700;
@@ -256,36 +284,7 @@
       font-size: 13px;
       color: var(--text-muted);
     }
-    .fleet-features li {
-      margin-bottom: 8px;
-    }
-
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
-    .feature-item {
-      background: var(--card-bg);
-      padding: 25px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-    .feature-item i {
-      font-size: 32px;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-    .feature-item h4 {
-      margin-bottom: 6px;
-      color: var(--secondary);
-    }
-    .feature-item p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
+    .fleet-features li { margin-bottom: 8px; }
 
     /* Footer */
     footer {
@@ -294,14 +293,17 @@
       padding: 40px 20px 20px;
       text-align: center;
     }
+    .footer-logo-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid var(--primary);
+    }
     .footer-box {
       max-width: 1200px;
       margin: auto;
-      margin-bottom: 25px;
-    }
-    .footer-box h3 {
-      color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     .contact-details {
       display: flex;
@@ -311,10 +313,7 @@
       margin-top: 15px;
       font-size: 14px;
     }
-    .contact-details a {
-      color: #ffffff;
-      text-decoration: none;
-    }
+    .contact-details a { color: #ffffff; text-decoration: none; }
 
     /* Floating WhatsApp */
     .floating-wa {
@@ -341,148 +340,164 @@
   <!-- Header -->
   <header class="header">
     <div class="nav-container">
-      <a href="#" class="logo">
-        <i class="fas fa-taxi"></i> Aash rides
+      <a href="#" class="logo-container">
+        <img src="logo.png" alt="Aashrides Logo" class="nav-logo-img">
+        <div>
+          <div class="logo-text">AASHRIDES</div>
+          <span class="logo-tagline">TRAVEL BEYOND BOUNDARIES</span>
+        </div>
       </a>
-      <div class="nav-actions">
-        <a href="tel:9311279707" class="nav-btn btn-call">
-          <i class="fas fa-phone-alt"></i> 9311279707
-        </a>
-      </div>
+      <a href="tel:9311279707" class="nav-btn"><i class="fas fa-phone-alt"></i> 9311279707</a>
     </div>
   </header>
 
-  <!-- Hero & Booking Engine -->
+  <!-- Hero Section -->
   <section class="hero">
-    <h1>Safe & Reliable Outstation Taxi Service</h1>
-    <p>Comfortable cabs for Local, Outstation & Holiday Tours at lowest per-KM rates</p>
+    <h1 style="color:var(--primary); font-size: 1.8rem; margin-bottom: 15px;">Aashrides - Premium Taxi Booking</h1>
 
-    <div class="booking-wrapper">
-      <div class="booking-title">
-        <i class="fas fa-route"></i> Instant Online Cab Booking
-      </div>
-
-      <form id="bookingForm" onsubmit="processBooking(event)">
-        <div class="form-grid">
-          
-          <div class="form-group">
-            <label><i class="fas fa-user"></i> Full Name</label>
-            <input type="text" id="custName" placeholder="Aapka Naam" required>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-phone"></i> WhatsApp Number</label>
-            <input type="tel" id="custPhone" placeholder="10 Digit Mobile No" required>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-map-marker-alt"></i> Pickup Location</label>
-            <input type="text" id="pickup" placeholder="e.g. Delhi / Airport" required>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-flag-checkered"></i> Drop Location</label>
-            <input type="text" id="drop" placeholder="e.g. Agra / Jaipur / Shimla" required>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-calendar-alt"></i> Travel Date</label>
-            <input type="date" id="travelDate" required>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-car"></i> Select Vehicle</label>
-            <select id="carType" onchange="calculateLiveFare()">
-              <option value="5-Seater" data-rate="15">5-Seater Sedan (₹15 / KM)</option>
-              <option value="7-Seater" data-rate="18">7-Seater SUV/Innova (₹18 / KM)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label><i class="fas fa-road"></i> Approx Distance (KM)</label>
-            <input type="number" id="distanceKm" placeholder="e.g. 200" min="1" value="100" oninput="calculateLiveFare()" required>
-          </div>
-
-          <div class="fare-preview">
-            <span>Estimated Fare (<span id="rateLabel">₹15/KM</span>):</span>
-            <span class="fare-price" id="fareTotal">₹1,500</span>
-          </div>
-
-          <button type="submit" class="submit-btn">
-            <i class="fab fa-whatsapp"></i> Confirm Booking & Get ID on WhatsApp
+    <div class="main-grid">
+      <!-- LEFT: Booking / Driver Tabs -->
+      <div class="card">
+        <div class="mode-tabs">
+          <button class="tab-btn active" id="tabCustomer" onclick="switchMode('customer')">
+            <i class="fas fa-user"></i> Customer Booking
+          </button>
+          <button class="tab-btn" id="tabDriver" onclick="switchMode('driver')">
+            <i class="fas fa-tachometer-alt"></i> Driver GPS Meter
           </button>
         </div>
-      </form>
+
+        <!-- 1. Customer Mode -->
+        <div id="customerSection">
+          <form id="bookingForm" onsubmit="processBooking(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Customer Name</label>
+                <input type="text" id="custName" placeholder="Full Name" required>
+              </div>
+
+              <div class="form-group">
+                <label>WhatsApp Number</label>
+                <input type="tel" id="custPhone" placeholder="10 Digit Number" required>
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label>Pickup Location</label>
+                <input type="text" id="pickup" placeholder="Type location..." required>
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label>Drop Location</label>
+                <input type="text" id="drop" placeholder="Type destination..." required>
+              </div>
+
+              <div class="form-group">
+                <label>Travel Date</label>
+                <input type="date" id="travelDate" required>
+              </div>
+
+              <div class="form-group">
+                <label>Vehicle Type</label>
+                <select id="carType" onchange="calculateLiveFare()">
+                  <option value="5-Seater" data-rate="15">5-Seater Sedan (₹15 / KM)</option>
+                  <option value="7-Seater" data-rate="18">7-Seater SUV (₹18 / KM)</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label>Est. Distance (KM)</label>
+                <input type="number" id="distanceKm" value="50" min="1" oninput="calculateLiveFare()" required>
+              </div>
+
+              <div class="fare-preview">
+                <span>Total Fare (<span id="rateLabel">₹15/KM</span>):</span>
+                <span class="fare-price" id="fareTotal">₹750</span>
+              </div>
+
+              <button type="submit" class="btn btn-wa" style="grid-column: 1 / -1;">
+                <i class="fab fa-whatsapp"></i> Book & Confirm on WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. Driver GPS Mode -->
+        <div id="driverSection" style="display:none;">
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">
+            Driver trip start karte hi live route map par track hona shuru ho jayega.
+          </p>
+
+          <button id="btnStartTrip" class="btn btn-start" onclick="startRideTracking()">
+            <i class="fas fa-play"></i> Start Ride (Start GPS Meter)
+          </button>
+          
+          <button id="btnStopTrip" class="btn btn-stop" onclick="stopRideTracking()">
+            <i class="fas fa-stop"></i> Complete Ride & Show Total Route
+          </button>
+
+          <button class="btn btn-nav" onclick="openGoogleNavigation()">
+            <i class="fas fa-location-arrow"></i> Open Google Navigation
+          </button>
+
+          <div id="rideSummaryBox">
+            <h4><i class="fas fa-check-circle"></i> Ride Complete Report</h4>
+            <p>🛣️ <b>Distance:</b> <span id="sumDistance">0.00</span> KM</p>
+            <p>💰 <b>Bill:</b> ₹<span id="sumFare">0</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Map Box -->
+      <div class="map-wrapper">
+        <div class="meter-dashboard">
+          <div>
+            <div class="stat-val" id="liveKm">0.00</div>
+            <div class="stat-lbl">LIVE KM</div>
+          </div>
+          <div>
+            <div class="stat-val" id="liveFare">₹0</div>
+            <div class="stat-lbl">RUNNING FARE</div>
+          </div>
+        </div>
+        <div id="map"></div>
+      </div>
     </div>
   </section>
 
-  <!-- Fleet & Pricing -->
+  <!-- Fleet Section -->
   <section class="section">
     <div class="section-header">
-      <h2>Transparent Per-KM Taxi Rates</h2>
-      <p>No hidden charges. Clear and affordable pricing for all your journeys.</p>
+      <h2>Transparent Per-KM Rates</h2>
+      <p>Fixed rates for outstation & touring packages.</p>
     </div>
 
     <div class="fleet-grid">
       <!-- 5 Seater -->
       <div class="fleet-card featured">
-        <span class="badge">POPULAR</span>
+        <span class="badge">SEDAN</span>
         <div class="fleet-icon"><i class="fas fa-car-side"></i></div>
         <h3>5-Seater Sedan</h3>
-        <p style="color:var(--text-muted); font-size:13px;">Dzire / Etios / Aura</p>
+        <p style="color:var(--text-muted); font-size:13px;">Swift Dzire / Toyota Etios</p>
         <div class="fleet-rate">₹15 <span style="font-size:14px; color:var(--text-muted)">/ KM</span></div>
         <ul class="fleet-features">
-          <li><i class="fas fa-check text-success"></i> 4 Passengers + 1 Driver</li>
-          <li><i class="fas fa-check"></i> 2 Large Luggage Bags</li>
-          <li><i class="fas fa-check"></i> Chilled AC & Clean Interior</li>
-          <li><i class="fas fa-check"></i> Best for Family & Outstation Trips</li>
+          <li><i class="fas fa-check"></i> 4 Passengers + 1 Driver</li>
+          <li><i class="fas fa-check"></i> 2 Luggage Bags</li>
+          <li><i class="fas fa-check"></i> Chilled AC Comfort</li>
         </ul>
       </div>
 
       <!-- 7 Seater -->
       <div class="fleet-card featured">
-        <span class="badge">EXTRA COMFORT</span>
+        <span class="badge">SUV / INNOVA</span>
         <div class="fleet-icon"><i class="fas fa-shuttle-van"></i></div>
         <h3>7-Seater SUV</h3>
-        <p style="color:var(--text-muted); font-size:13px;">Ertiga / Innova Crysta</p>
+        <p style="color:var(--text-muted); font-size:13px;">Innova Crysta / Ertiga</p>
         <div class="fleet-rate">₹18 <span style="font-size:14px; color:var(--text-muted)">/ KM</span></div>
         <ul class="fleet-features">
           <li><i class="fas fa-check"></i> 6 Passengers + 1 Driver</li>
-          <li><i class="fas fa-check"></i> Extra Luggage Carrier Space</li>
-          <li><i class="fas fa-check"></i> High Legroom & Luxury Suspension</li>
-          <li><i class="fas fa-check"></i> Ideal for Group & Hill Station Tours</li>
+          <li><i class="fas fa-check"></i> Extra Luggage Space</li>
+          <li><i class="fas fa-check"></i> Best for Mountain & Long Tours</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="section" style="background:#fff; border-radius:16px;">
-    <div class="section-header">
-      <h2>Why Ride With Aash rides?</h2>
-      <p>Your safety, comfort and punctuality are our top priorities.</p>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-item">
-        <i class="fas fa-id-card"></i>
-        <h4>Verified Drivers</h4>
-        <p>Experienced, route-expert, and police-verified drivers.</p>
-      </div>
-      <div class="feature-item">
-        <i class="fas fa-hand-holding-usd"></i>
-        <h4>Fixed KM Pricing</h4>
-        <p>Accurate billing based on ₹15 & ₹18 per KM rates.</p>
-      </div>
-      <div class="feature-item">
-        <i class="fas fa-headset"></i>
-        <h4>24x7 Customer Support</h4>
-        <p>Always available on call & WhatsApp for assist.</p>
-      </div>
-      <div class="feature-item">
-        <i class="fas fa-shield-alt"></i>
-        <h4>Clean & Sanitized</h4>
-        <p>Fresh, well-maintained AC cabs for every tour.</p>
       </div>
     </div>
   </section>
@@ -490,8 +505,9 @@
   <!-- Footer -->
   <footer>
     <div class="footer-box">
-      <h3>Aash rides Touring & Taxi Agency</h3>
-      <p>Specialized in Outstation Tours, Airport Pick & Drop, and Customized Holiday Packages.</p>
+      <img src="logo.png" alt="Aashrides" class="footer-logo-img">
+      <h3 style="color:var(--primary)">AASHRIDES</h3>
+      <p style="font-size:12px; color:#cbd5e1;">Travel Beyond Boundaries • Mountains | Adventure | Memories</p>
       
       <div class="contact-details">
         <div><i class="fas fa-phone-alt"></i> <a href="tel:9311279707">+91 9311279707</a></div>
@@ -499,70 +515,202 @@
       </div>
     </div>
     <hr style="border: 0.5px solid #334155; margin-bottom: 15px;">
-    <p style="font-size:12px;">© 2025 Aash rides. All Rights Reserved.</p>
+    <p style="font-size:12px;">© 2025 Aashrides. All Rights Reserved.</p>
   </footer>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://api.whatsapp.com/send?phone=919311279707&text=Hello%20Aash%20rides!%20Mujhe%20Taxi%20Book%20Karni%20Hai." target="_blank" class="floating-wa" title="Chat on WhatsApp">
+  <!-- Floating WhatsApp Button -->
+  <a href="https://api.whatsapp.com/send?phone=919311279707&text=Hello%20Aashrides!%20Mujhe%20Taxi%20Book%20Karni%20Hai." target="_blank" class="floating-wa" title="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Script Logic -->
-  <script>
-    const AGENCY_PHONE = "919311279707"; // Aash rides WhatsApp
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,geometry&callback=initMap" async defer></script>
 
-    // Live Fare Calculator
-    function calculateLiveFare() {
-      const carSelect = document.getElementById("carType");
-      const rate = Number(carSelect.options[carSelect.selectedIndex].getAttribute("data-rate"));
-      const km = Number(document.getElementById("distanceKm").value) || 0;
-      
-      const total = km * rate;
-      document.getElementById("rateLabel").innerText = `₹${rate}/KM`;
-      document.getElementById("fareTotal").innerText = `₹${total.toLocaleString("en-IN")}`;
+  <script>
+    const AGENCY_PHONE = "919311279707";
+    let map, directionsService, directionsRenderer;
+    let pickupAuto, dropAuto;
+    let watchId = null;
+    let pathCoords = [];
+    let polylineTrack = null;
+    let totalKm = 0;
+    let wakeLock = null;
+
+    function switchMode(mode) {
+      if (mode === 'customer') {
+        document.getElementById('customerSection').style.display = 'block';
+        document.getElementById('driverSection').style.display = 'none';
+        document.getElementById('tabCustomer').classList.add('active');
+        document.getElementById('tabDriver').classList.remove('active');
+      } else {
+        document.getElementById('customerSection').style.display = 'none';
+        document.getElementById('driverSection').style.display = 'block';
+        document.getElementById('tabCustomer').classList.remove('active');
+        document.getElementById('tabDriver').classList.add('active');
+      }
     }
 
-    // Process Booking and generate Customer Booking ID
+    function initMap() {
+      const defaultCenter = { lat: 28.6139, lng: 77.2090 };
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultCenter,
+        zoom: 11,
+        mapTypeControl: false
+      });
+
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+
+      pickupAuto = new google.maps.places.Autocomplete(document.getElementById("pickup"));
+      dropAuto = new google.maps.places.Autocomplete(document.getElementById("drop"));
+
+      pickupAuto.addListener("place_changed", calcRouteDistance);
+      dropAuto.addListener("place_changed", calcRouteDistance);
+    }
+
+    function calcRouteDistance() {
+      const p = document.getElementById("pickup").value;
+      const d = document.getElementById("drop").value;
+      if (!p || !d) return;
+
+      directionsService.route({
+        origin: p, destination: d, travelMode: google.maps.TravelMode.DRIVING
+      }, (res, status) => {
+        if (status === "OK") {
+          directionsRenderer.setDirections(res);
+          const km = Math.round(res.routes[0].legs[0].distance.value / 1000);
+          document.getElementById("distanceKm").value = km;
+          calculateLiveFare();
+        }
+      });
+    }
+
+    function calculateLiveFare() {
+      const car = document.getElementById("carType");
+      const rate = Number(car.options[car.selectedIndex].getAttribute("data-rate"));
+      const km = Number(document.getElementById("distanceKm").value) || 0;
+      const total = km * rate;
+
+      document.getElementById("rateLabel").innerText = `₹${rate}/KM`;
+      document.getElementById("fareTotal").innerText = `₹${total.toLocaleString("en-IN")}`;
+      return { rate, km, total };
+    }
+
+    async function requestWakeLock() {
+      try {
+        if ('wakeLock' in navigator) {
+          wakeLock = await navigator.wakeLock.request('screen');
+        }
+      } catch (err) { console.log(err); }
+    }
+
+    function startRideTracking() {
+      if (!navigator.geolocation) {
+        alert("GPS support nahi hai.");
+        return;
+      }
+
+      requestWakeLock();
+      document.getElementById("btnStartTrip").style.display = "none";
+      document.getElementById("btnStopTrip").style.display = "flex";
+      document.getElementById("rideSummaryBox").style.display = "none";
+
+      pathCoords = [];
+      totalKm = 0;
+
+      polylineTrack = new google.maps.Polyline({
+        path: pathCoords,
+        geodesic: true,
+        strokeColor: "#dc2626",
+        strokeOpacity: 1.0,
+        strokeWeight: 5,
+        map: map
+      });
+
+      watchId = navigator.geolocation.watchPosition(
+        (pos) => {
+          if (pos.coords.accuracy > 40) return;
+          const newPos = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+          if (pathCoords.length > 0) {
+            const lastPos = pathCoords[pathCoords.length - 1];
+            const distMeters = google.maps.geometry.spherical.computeDistanceBetween(lastPos, newPos);
+            if (distMeters > 5) {
+              totalKm += (distMeters / 1000);
+            }
+          }
+
+          pathCoords.push(newPos);
+          polylineTrack.setPath(pathCoords);
+          map.panTo(newPos);
+
+          const { rate } = calculateLiveFare();
+          document.getElementById("liveKm").innerText = totalKm.toFixed(2);
+          document.getElementById("liveFare").innerText = `₹${Math.round(totalKm * rate)}`;
+        },
+        (err) => console.error(err),
+        { enableHighAccuracy: true, maximumAge: 1000 }
+      );
+    }
+
+    function stopRideTracking() {
+      if (watchId) navigator.geolocation.clearWatch(watchId);
+      if (wakeLock) wakeLock.release();
+
+      document.getElementById("btnStartTrip").style.display = "flex";
+      document.getElementById("btnStopTrip").style.display = "none";
+
+      const { rate } = calculateLiveFare();
+      const finalFare = Math.round(totalKm * rate);
+
+      document.getElementById("sumDistance").innerText = totalKm.toFixed(2);
+      document.getElementById("sumFare").innerText = finalFare;
+      document.getElementById("rideSummaryBox").style.display = "block";
+
+      if (pathCoords.length > 0) {
+        const bounds = new google.maps.LatLngBounds();
+        pathCoords.forEach(c => bounds.extend(c));
+        map.fitBounds(bounds);
+      }
+    }
+
+    function openGoogleNavigation() {
+      const drop = document.getElementById("drop").value;
+      if (!drop) return alert("Pehle Drop location dalein!");
+      window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(drop)}&travelmode=driving`, '_blank');
+    }
+
     function processBooking(e) {
       e.preventDefault();
-
       const name = document.getElementById("custName").value;
       const phone = document.getElementById("custPhone").value;
       const pickup = document.getElementById("pickup").value;
       const drop = document.getElementById("drop").value;
       const date = document.getElementById("travelDate").value;
-      const carSelect = document.getElementById("carType");
-      const carName = carSelect.value;
-      const rate = Number(carSelect.options[carSelect.selectedIndex].getAttribute("data-rate"));
-      const km = Number(document.getElementById("distanceKm").value) || 0;
-      const fare = km * rate;
+      const car = document.getElementById("carType").value;
+      const { rate, km, total } = calculateLiveFare();
 
-      // Unique Customer/Booking ID generator (e.g. AR-8492)
       const bookingId = "AR-" + Math.floor(1000 + Math.random() * 9000);
 
-      // Formatted WhatsApp Message
-      const message = 
-`🚖 *AASHRIDES - BOOKING CONFIRMATION REQUEST* 🚖
+      const msg = 
+`🚖 *AASHRIDES - NEW BOOKING REQUEST* 🚖
 
-🆔 *Customer/Booking ID:* ${bookingId}
+🆔 *Booking ID:* ${bookingId}
 👤 *Name:* ${name}
 📞 *Phone:* ${phone}
 
 📍 *Pickup:* ${pickup}
 🚩 *Drop:* ${drop}
 📅 *Date:* ${date}
-🚗 *Vehicle:* ${carName} (@ ₹${rate}/KM)
+🚗 *Vehicle:* ${car} (@ ₹${rate}/KM)
 🛣️ *Est. Distance:* ${km} KM
-💰 *Est. Total Fare:* ₹${fare.toLocaleString("en-IN")}
+💰 *Est. Fare:* ₹${total.toLocaleString("en-IN")}
 
-Thank you for booking with *Aash rides*! 🚕✨`;
+Thank you for choosing *AASHRIDES*! 🚕✨`;
 
-      // Open WhatsApp with details
-      const waUrl = `https://api.whatsapp.com/send?phone=${AGENCY_PHONE}&text=${encodeURIComponent(message)}`;
-      window.open(waUrl, '_blank');
+      window.open(`https://api.whatsapp.com/send?phone=${AGENCY_PHONE}&text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Set today's date as default
     document.getElementById('travelDate').valueAsDate = new Date();
     calculateLiveFare();
   </script>
