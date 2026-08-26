@@ -86,7 +86,31 @@
     .fleet-card { background: var(--card-bg); border-radius: 12px; padding: 22px; border: 2px solid var(--brand-gold); text-align: center; }
     .fleet-rate { font-size: 1.6rem; font-weight: 700; color: #16a34a; margin: 10px 0; }
     footer { background: var(--brand-navy); color: #94a3b8; padding: 35px 20px 20px; text-align: center; font-size: 13px; }
-    .floating-wa { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp); color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 999; text-decoration: none; }
+    
+    /* Floating WhatsApp Icon */
+    .floating-wa { 
+      position: fixed; 
+      bottom: 20px; 
+      right: 20px; 
+      background: var(--whatsapp); 
+      color: #fff; 
+      width: 58px; 
+      height: 58px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 30px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+      z-index: 999; 
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .floating-wa:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -238,11 +262,14 @@
       <span style="color:#fff;">AASH</span><span style="color:var(--brand-gold);">RIDES</span>
     </div>
     <p style="color:#cbd5e1; margin-bottom:12px;">TRAVEL BEYOND BOUNDARIES — TAXI & TRAVEL AGENCY</p>
-    <p>📞 <a href="tel:9311279707" style="color:#fff; text-decoration:none;">+91 9311279707</a> | ✉️ <a href="mailto:Aashrides@gmail.com" style="color:#fff; text-decoration:none;">Aashrides@gmail.com</a></p>
+    <p>📞 <a href="tel:9311279707" style="color:#fff; text-decoration:none;">+91 9311279707</a> | ✉️ <a href="mailto:aashrides@gmail.com" style="color:#fff; text-decoration:none;">aashrides@gmail.com</a></p>
     <p style="font-size:11px; color:#64748b; margin-top:15px;">© 2025 AASHRIDES. All Rights Reserved.</p>
   </footer>
 
-  <a href="https://api.whatsapp.com/send?phone=919311279707&text=Hello%20AASHRIDES!%20Mujhe%20Taxi%20Book%20Karni%20Hai." target="_blank" class="floating-wa"><i class="fab fa-whatsapp"></i></a>
+  <!-- Floating WhatsApp Button with Custom Share Message -->
+  <button onclick="shareOnWhatsApp()" class="floating-wa" title="Share / Contact on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </button>
 
   <!-- Google Maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,geometry&callback=initMap" async defer></script>
@@ -257,6 +284,27 @@
     let polylineTrack = null;
     let totalKm = 0;
     let wakeLock = null;
+
+    // Floating WhatsApp Icon Custom Promo Message Handler
+    function shareOnWhatsApp() {
+      const promoMsg = 
+`🚖 *Aashrides – Your Trusted Travel Partner*
+
+Delhi/NCR se India ke kisi bhi destination ke liye comfortable, safe & reliable taxi booking. 🇮🇳
+
+🚘 5 & 7 Seater Cars
+📍 Easy & Quick Booking
+💰 Transparent & Competitive Fare
+🛣️ One Way & Round Trip
+
+👉 Apni taxi book karne ke liye Aashrides par visit karein.
+📞 9311279707
+📧 aashrides@gmail.com
+
+*Aashrides – Travel Beyond Boundaries.* ✨`;
+
+      window.open(`https://api.whatsapp.com/send?phone=${AGENCY_PHONE}&text=${encodeURIComponent(promoMsg)}`, '_blank');
+    }
 
     function switchMode(mode) {
       document.getElementById('customerSection').style.display = mode === 'customer' ? 'block' : 'none';
