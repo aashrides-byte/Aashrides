@@ -1,257 +1,98 @@
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
 <!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aashrides Admin Dashboard</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f7f6;
-      margin: 20px;
-      color: #333;
-    }
-    h2 {
-      text-align: center;
-      color: #1a202c;
-    }
-    .table-container {
-      overflow-x: auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 14px;
-    }
-    th {
-      background-color: #f8fafc;
-      color: #4a5568;
-      font-weight: 600;
-    }
-    tr:hover {
-      background-color: #f8fafc;
-    }
-    /* Status Badges */
-    .status-badge {
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .status-confirmed { background-color: #e0f2fe; color: #0284c7; }
-    .status-completed { background-color: #dcfce7; color: #16a34a; }
-
-    /* Action Buttons */
-    .btn {
-      padding: 7px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin: 2px 0;
-      text-decoration: none;
-    }
-    .btn-driver {
-      background-color: #2563eb;
-      color: white;
-    }
-    .btn-driver:hover { background-color: #1d4ed8; }
-    
-    .btn-complete {
-      background-color: #16a34a;
-      color: white;
-    }
-    .btn-complete:hover { background-color: #15803d; }
-  </style>
-</head>
-<body>
-
-  <h2>🚖 Aashrides - Booking & Tour Management</h2>
-
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Booking ID</th>
-          <th>Customer</th>
-          <th>Route & Trip</th>
-          <th>Distance</th>
-          <th>Fare</th>
-          <th>Driver & Vehicle</th>
-          <th>Status</th>
-          <th>WhatsApp Actions</th>
-        </tr>
-      </thead>
-      <tbody id="bookingTableBody">
-        <!-- JavaScript se row generate hongi -->
-      </tbody>
-    </table>
-  </div>
-
-  <script>
-    // Business Settings
-    const GOOGLE_REVIEW_LINK = "https://g.page/r/YOUR_GOOGLE_REVIEW_LINK"; // Apni review link dalein
-
-    // Sample Bookings Database
-    let bookingsDatabase = [
-      {
-        id: "AR-101",
-        name: "Rahul Sharma",
-        phone: "9876543210",
-        pickup: "Delhi Airport (T3)",
-        drop: "Agra (Taj Mahal)",
-        tripType: "Outstation",
-        distanceKm: 230,
-        fare: 3500,
-        driverName: "Ramesh Kumar",
-        driverPhone: "9811223344",
-        vehicleName: "Swift Dzire (Sedan)",
-        vehicleNumber: "DL 01 AB 1234",
-        status: "Confirmed" // Confirmed ya Completed
-      },
-      {
-        id: "AR-102",
-        name: "Amit Verma",
-        phone: "9123456780",
-        pickup: "Jaipur Railway Station",
-        drop: "Udaipur",
-        tripType: "Outstation (Tour)",
-        distanceKm: 395,
-        fare: 6200,
-        driverName: "Vikram Singh",
-        driverPhone: "9822334455",
-        vehicleName: "Toyota Innova Crysta",
-        vehicleNumber: "RJ 14 XY 9876",
-        status: "Confirmed"
-      }
-    ];
-
-    // Phone Number Formatter (Indian Number Safe)
-    function formatPhoneNumber(phone) {
-      let clean = phone.toString().replace(/[^0-9]/g, '');
-      if (clean.length === 11 && clean.startsWith('0')) {
-        clean = clean.substring(1);
-      }
-      if (clean.length === 10) {
-        clean = '91' + clean;
-      }
-      return clean;
-    }
-
-    // 1. WhatsApp Action: Send Driver & Booking Details
-    function sendDriverDetails(id) {
-      const b = bookingsDatabase.find(item => item.id === id);
-      if (!b) return;
-
-      const message = 
-`Namaste *${b.name}* ji! 🚕
-
-Aapki Taxi Booking Confirm ho gayi hai. Safar ki details niche di gayi hain:
-
-🆔 *Booking ID:* ${b.id}
-📍 *Pickup:* ${b.pickup}
-🚩 *Drop:* ${b.drop}
-🛣️ *Trip Type:* ${b.tripType} (${b.distanceKm} KM)
-💰 *Estimated Fare:* ₹${Number(b.fare).toLocaleString("en-IN")}
-
-👨‍✈️ *Driver & Cab Details:*
-• *Driver Name:* ${b.driverName}
-• *Contact No:* ${b.driverPhone}
-• *Vehicle:* ${b.vehicleName}
-• *Vehicle No:* ${b.vehicleNumber}
-
-Driver pickup time par aapse contact karenge.
-Safe journey with *Aashrides*! ✨`;
-
-      const waPhone = formatPhoneNumber(b.phone);
-      window.open(`https://api.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(message)}`, '_blank');
-    }
-
-    // 2. WhatsApp Action: Complete Ride & Send Final Receipt + Feedback
-    function completeRide(id) {
-      const b = bookingsDatabase.find(item => item.id === id);
-      if (!b) return;
-
-      b.status = "Completed";
-      renderAdminTable();
-
-      const receiptMessage = 
-`Hello *${b.name}*,
-
-🎉 *Aapka Safar Safaltapoorvak Pura Hua!*
-
-🆔 *Booking ID:* ${b.id}
-📍 *Route:* ${b.pickup} ➔ ${b.drop}
-🛣️ *Total Distance:* ${b.distanceKm} KM
-👨‍✈️ *Driver:* ${b.driverName} (${b.vehicleNumber})
-💰 *Final Paid Amount:* ₹${Number(b.fare).toLocaleString("en-IN")}
-
-⭐ *Rate Your Journey / Feedback:*
-Kripya apna anubhav hamare sath share karein:
-👉 ${GOOGLE_REVIEW_LINK}
-
-Thank you for choosing *Aashrides*! Dobara seva ka mauka zaroor dein! 🚕✨`;
-
-      const waPhone = formatPhoneNumber(b.phone);
-      window.open(`https://api.whatsapp.com/send?phone=${waPhone}&text=${encodeURIComponent(receiptMessage)}`, '_blank');
-    }
-
-    // Render Data into Table
-    function renderAdminTable() {
-      const tbody = document.getElementById("bookingTableBody");
-      if (!tbody) return;
-
       tbody.innerHTML = bookingsDatabase.map(b => `
         <tr>
           <td><b>${b.id}</b></td>
-          <td><b>${b.name}</b><br><span style="color:#718096; font-size:12px;">📞 ${b.phone}</span></td>
+          <td>${b.name}</td>
+          <td>${b.phone}</td>
+          <td>${b.pickup} → ${b.drop}</td>
+          <td>₹${b.fare.toLocaleString("en-IN")}</td>
           <td>
-            <b>${b.pickup}</b> ➔ <b>${b.drop}</b><br>
-            <span style="font-size:12px; color:#4a5568;">Type: ${b.tripType}</span>
-          </td>
-          <td><b>${b.distanceKm} KM</b></td>
-          <td><b>₹${Number(b.fare).toLocaleString("en-IN")}</b></td>
-          <td>
-            <b>${b.driverName}</b> (${b.driverPhone})<br>
-            <span style="color:#718096; font-size:12px;">🚗 ${b.vehicleName} [${b.vehicleNumber}]</span>
-          </td>
-          <td>
-            <span class="status-badge ${b.status === 'Completed' ? 'status-completed' : 'status-confirmed'}">
+            <span class="status-badge ${b.status === 'Completed' ? 'status-completed' : 'status-pending'}">
               ${b.status}
             </span>
           </td>
           <td>
-            <button class="btn btn-driver" onclick="sendDriverDetails('${b.id}')">
-              📲 Send Driver Info
-            </button>
-            <br>
-            ${b.status !== 'Completed' ? 
-              `<button class="btn btn-complete" onclick="completeRide('${b.id}')">
-                ✅ Complete & Receipt
-              </button>` : 
-              `<span style="color:#16a34a; font-size:12px; font-weight:bold;">✔ Ride Completed</span>`
+            ${b.status === 'Pending' ? 
+              `<button class="whatsapp-btn" onclick="completeRide('${b.id}')">✅ Complete Ride & Send Receipt</button>` : 
+              `<span style="color:#20ba5a;font-weight:bold">Message Sent</span>`
             }
           </td>
         </tr>
       `).join("");
     }
 
-    // Initial Load
-    renderAdminTable();
+    function completeRide(id){
+      const booking = bookingsDatabase.find(b => b.id === id);
+      if(!booking) return;
+
+      booking.status = "Completed";
+      renderAdminTable();
+
+      const receiptMessage = `Hello ${booking.name},%0A%0A` +
+        `🎉 *Aapki Ride Successful Complete Ho Gayi Hai!*%0A` +
+        `🆔 *Booking ID:* ${booking.id}%0A` +
+        `📍 *Pickup:* ${booking.pickup}%0A` +
+        `🚩 *Drop:* ${booking.drop}%0A` +
+        `💰 *Final Paid Amount:* ₹${booking.fare.toLocaleString("en-IN")}%0A%0A` +
+        `Thank you for riding with *Aashrides*! Have a great day ahead! 🚕✨`;
+
+      let cleanPhone = booking.phone.replace(/[^0-9]/g, '');
+      if(!cleanPhone.startsWith('91') && cleanPhone.length === 10){
+        cleanPhone = '91' + cleanPhone;
+      }
+
+      window.open(`https://wa.me/${cleanPhone}?text=${receiptMessage}`, '_blank');
+    }
   </script>
 </body>
 </html>
+
+Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to mov
